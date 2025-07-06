@@ -519,361 +519,121 @@ header p {
     transform: translateX(0);
 }
 
-/* フッター */
-footer {
-    text-align: center;
-    color: white;
+/* お問い合わせセクション */
+.contact-section {
+    background: white;
+    border-radius: 12px;
     padding: 20px;
-    margin-top: 30px;
-    opacity: 0.8;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* レスポンシブデザイン */
-/* タブレット向け */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    
-    header h1 {
-        font-size: 2rem;
-    }
-    
-    .commands-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .filter-buttons {
-        justify-content: center;
-    }
-    
-    .custom-input-group {
-        flex-direction: column;
-    }
-    
-    .custom-input-group input {
-        min-width: auto;
-    }
-    
-    .command-actions {
-        flex-direction: column;
-    }
-    
-    .custom-command-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-    
-    .custom-command-actions {
-        align-self: flex-end;
-    }
+.contact-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* iPhone向け（小画面スマートフォン） */
+.contact-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-section input,
+.contact-section textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: vertical;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.contact-section textarea {
+    min-height: 120px;
+    max-height: 300px;
+}
+
+.contact-section button[type="submit"] {
+    align-self: flex-start;
+    min-width: 120px;
+}
+
+.contact-section button[type="submit"]:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
+}
+
+.contact-section button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* iPhone向け調整 */
 @media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-    
-    /* ヘッダー調整 */
-    header {
-        margin-bottom: 20px;
-    }
-    
-    header h1 {
-        font-size: 1.8rem;
-        margin-bottom: 8px;
-    }
-    
-    header p {
-        font-size: 1rem;
-    }
-    
-    /* 検索セクション調整 */
-    .search-section {
+    .contact-section {
         padding: 15px;
         margin-bottom: 20px;
     }
     
-    .search-box {
-        margin-bottom: 15px;
-    }
-    
-    .search-box input {
-        padding: 14px 45px;
-        font-size: 16px; /* iOSのズーム防止 */
-    }
-    
-    /* フィルターボタン調整 */
-    .filter-buttons {
-        gap: 8px;
-        justify-content: flex-start;
-    }
-    
-    .filter-btn {
-        padding: 10px 14px;
-        font-size: 0.85rem;
-        min-height: 44px; /* タッチターゲットサイズ */
-        white-space: nowrap;
-    }
-    
-    /* コマンドカード調整 */
-    .commands-grid {
-        gap: 12px;
-    }
-    
-    .command-card {
-        padding: 15px;
-        border-radius: 8px;
-    }
-    
-    .command-title {
-        font-size: 1rem;
-        line-height: 1.4;
-    }
-    
-    .command-code {
-        font-size: 0.8rem;
-        padding: 10px;
-        word-break: break-all;
-        overflow-wrap: break-word;
-    }
-    
-    .command-description {
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
-    
-    .command-actions {
-        gap: 8px;
-    }
-    
-    .btn-copy, .btn-param {
-        width: 100%;
-        padding: 12px 16px;
-        font-size: 0.9rem;
-        min-height: 44px;
-        justify-content: center;
-    }
-    
-    /* カスタムコマンドセクション調整 */
-    .custom-command-section {
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .custom-command-section h2 {
+    .contact-section h2 {
         font-size: 1.3rem;
         margin-bottom: 15px;
     }
     
-    .custom-input-group input {
+    .contact-section input,
+    .contact-section textarea {
         padding: 14px 12px;
         font-size: 16px; /* iOSのズーム防止 */
-        margin-bottom: 10px;
     }
     
-    .btn-primary {
+    .contact-section textarea {
+        min-height: 100px;
+    }
+    
+    .contact-section button[type="submit"] {
         width: 100%;
-        padding: 14px 20px;
-        font-size: 1rem;
         min-height: 44px;
         justify-content: center;
-    }
-    
-    .custom-command-item {
-        padding: 12px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-    }
-    
-    .custom-command-actions {
         align-self: stretch;
-        justify-content: stretch;
-        gap: 8px;
-    }
-    
-    .custom-command-actions .btn-copy,
-    .custom-command-actions .btn-delete {
-        flex: 1;
-        min-height: 44px;
-        justify-content: center;
-    }
-    
-    /* 最近使用したコマンドセクション調整 */
-    .recent-section {
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .recent-section h2 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-    }
-    
-    .recent-command-item {
-        padding: 12px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-    }
-    
-    .recent-command-info {
-        width: 100%;
-    }
-    
-    .recent-command-code {
-        font-size: 0.8rem;
-        word-break: break-all;
-        margin-bottom: 5px;
-    }
-    
-    .recent-command-time {
-        font-size: 0.75rem;
-    }
-    
-    .recent-command-item .btn-copy {
-        width: 100%;
-        min-height: 44px;
-        justify-content: center;
-    }
-    
-    /* モーダル調整 */
-    .modal {
-        width: 95%;
-        max-width: none;
-        margin: 20px;
-        max-height: 90vh;
-    }
-    
-    .modal-header {
-        padding: 15px;
-    }
-    
-    .modal-header h3 {
-        font-size: 1.2rem;
-    }
-    
-    .modal-body {
-        padding: 15px;
-    }
-    
-    .input-group input {
-        padding: 14px 12px;
-        font-size: 16px; /* iOSのズーム防止 */
-    }
-    
-    .command-preview {
-        padding: 10px;
-        font-size: 0.8rem;
-        word-break: break-all;
-    }
-    
-    .modal-footer {
-        padding: 15px;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .btn-secondary, .modal-footer .btn-primary {
-        width: 100%;
-        min-height: 44px;
-        justify-content: center;
-    }
-    
-    /* 通知調整 */
-    .notification {
-        top: 10px;
-        right: 10px;
-        left: 10px;
-        width: auto;
-        padding: 12px 15px;
-        font-size: 0.9rem;
-        transform: translateY(-100%);
-    }
-    
-    .notification.show {
-        transform: translateY(0);
-    }
-    
-    /* フッター調整 */
-    footer {
-        padding: 15px;
-        font-size: 0.9rem;
     }
 }
 
-/* iPhone SE等の極小画面向け */
-@media (max-width: 375px) {
-    .container {
-        padding: 8px;
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) and (max-width: 480px) {
+    .contact-section {
+        background: #1e1e1e;
+        color: #ffffff;
     }
     
-    header h1 {
-        font-size: 1.6rem;
+    .contact-section input,
+    .contact-section textarea {
+        background: #2d2d2d;
+        border-color: #444;
+        color: #ffffff;
     }
     
-    .search-section, 
-    .custom-command-section, 
-    .recent-section {
-        padding: 12px;
+    .contact-section input::placeholder,
+    .contact-section textarea::placeholder {
+        color: #888;
     }
     
-    .command-card {
-        padding: 12px;
+    .contact-section input:focus,
+    .contact-section textarea:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
     }
-    
-    .filter-btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-    }
-    
-    .command-code {
-        font-size: 0.75rem;
-    }
-}
-
-/* 隠れた要素 */
-.hidden {
-    display: none !important;
-}
-
-/* アニメーション */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.command-card {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-/* スクロールバーのスタイル */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }
 
 /* iPhone向け追加スタイル */
@@ -1003,5 +763,76 @@ footer {
     .custom-input-group input::placeholder,
     .input-group input::placeholder {
         color: #888;
+    }
+}
+
+/* フッター */
+footer {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    padding: 25px 20px;
+    margin: 30px auto 20px;
+    max-width: 1200px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+footer p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+footer p:first-child {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+footer p:last-child {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* フッターのレスポンシブ対応 */
+@media (max-width: 768px) {
+    footer {
+        margin: 20px 15px 15px;
+        padding: 20px 15px;
+    }
+    
+    footer p:first-child {
+        font-size: 1rem;
+    }
+    
+    footer p:last-child {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        margin: 15px 10px 10px;
+        padding: 18px 12px;
+        border-radius: 8px;
+    }
+    
+    footer p:first-child {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+    
+    footer p:last-child {
+        font-size: 0.8rem;
+    }
+}
+
+/* ダークモード対応（フッター） */
+@media (prefers-color-scheme: dark) and (max-width: 480px) {
+    footer {
+        background: rgba(30, 30, 30, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 }

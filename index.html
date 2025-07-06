@@ -84,6 +84,18 @@
         </div>
     </div>
 
+    <!-- お問い合わせフォーム -->
+    <section class="contact-section">
+        <h2><i class="fas fa-envelope"></i> お問い合わせ</h2>
+        <form id="contactForm">
+            <input type="text" name="user_name" placeholder="お名前" required />
+            <input type="email" name="user_email" placeholder="メールアドレス" required />
+            <textarea name="message" placeholder="お問い合わせ内容" required></textarea>
+            <button type="submit" class="btn-primary">送信</button>
+        </form>
+    </section>
+
+
     <!-- 通知 -->
     <div class="notification" id="notification">
         <i class="fas fa-check-circle"></i>
@@ -94,6 +106,28 @@
         <p>&copy; 2025 Git Command Helper - あなたの開発効率を向上させるツール</p>
         <p id="lastUpdated">最終更新日: </p>
     </footer>
+
+    <!-- EmailJS ライブラリの読み込み -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("JrulMP-Mi8egamGmO"); // ここにEmailJSの「公開キー」を記述
+        })();
+
+        // フォーム送信処理
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            emailjs.sendForm('service_5psbqcp', 'template_5459usq', this)
+                .then(() => {
+                    alert('送信に成功しました！');
+                    this.reset(); // フォームをリセット
+                }, (error) => {
+                    alert('送信に失敗しました: ' + JSON.stringify(error));
+                });
+        });
+    </script>
+
 
 
     <script src="script.js"></script>
