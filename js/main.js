@@ -14,20 +14,109 @@ let notification, notificationText;
 // 現在のモーダル用データ
 let currentModalCommand = null;
 
+// 最終更新日を取得して表示する
+function updateLastModified() {
+    const lastUpdatedElement = document.getElementById("lastUpdated");
+    if (lastUpdatedElement) {
+        const langData = getCurrentLanguageData && getCurrentLanguageData();
+        const today = new Date();
+        let locale = 'ja-JP';
+        
+        if (window.currentLanguage === 'en') {
+            locale = 'en-US';
+        } else if (window.currentLanguage === 'zh') {
+            locale = 'zh-CN';
+        }
+        
+        const formattedDate = today.toLocaleDateString(locale, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        const prefix = langData ? langData.last_updated : '最終更新日: ';
+        lastUpdatedElement.textContent = `${prefix}${formattedDate}`;
+    }
+}
+
+// ダークモード切り替え機能
+function initializeDarkMode() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+    
+    // 初期状態の設定
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        updateDarkModeIcon(true);
+    }
+    
+    // ダークモード切り替えボタンのイベントリスナー
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    }
+}
+
+function toggleDarkMode() {
+    const body = document.body;
+    const isDarkMode = body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+        // ライトモードに切り替え
+        body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+        updateDarkModeIcon(false);
+    } else {
+        // ダークモードに切り替え
+        body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+        updateDarkModeIcon(true);
+    }
+}
+
+function updateDarkModeIcon(isDarkMode) {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        const icon = darkModeToggle.querySelector('i');
+        if (icon) {
+            if (isDarkMode) {
+                icon.className = 'fas fa-sun'; // ダークモード時は太陽アイコン
+            } else {
+                icon.className = 'fas fa-moon'; // ライトモード時は月アイコン
+            }
+        }
+    }
+}
+
 // グローバルに公開
 window.currentFilter = currentFilter;
 window.customCommands = customCommands;
 window.recentCommands = recentCommands;
 window.currentModalCommand = currentModalCommand;
+window.updateLastModified = updateLastModified;
+window.initializeDarkMode = initializeDarkMode;
+window.toggleDarkMode = toggleDarkMode;
+window.updateDarkModeIcon = updateDarkModeIcon;
 
 // 初期化
 document.addEventListener('DOMContentLoaded', function() {
     initializeElements();
     loadStoredData();
+    
+    // 言語システムの初期化
+    if (window.initializeLanguage) {
+        initializeLanguage();
+    }
+    
+    // ダークモードの初期化
+    initializeDarkMode();
+    
     renderCommands();
     setupEventListeners();
     renderCustomCommands();
     renderRecentCommands();
+    
+    // 最終更新日を設定
+    updateLastModified();
 });
 
 // DOM要素を取得
@@ -150,20 +239,6 @@ function handleFilterChange(e) {
     // コマンドを再表示
     renderCommands();
 }
-
-// 最終更新日を取得して表示する
-document.addEventListener("DOMContentLoaded", () => {
-    const lastUpdated = document.lastModified;
-    const lastUpdatedElement = document.getElementById("lastUpdated");
-
-    if (lastUpdatedElement) {
-        lastUpdatedElement.textContent = `最終更新日: ${new Date(lastUpdated).toLocaleDateString('ja-JP', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        })}`;
-    }
-});
 
 // エラーハンドリング
 window.addEventListener('error', function(e) {

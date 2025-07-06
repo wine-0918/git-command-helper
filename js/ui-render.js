@@ -5,11 +5,13 @@ function renderCommands() {
     if (!window.gitCommands || !searchInput || !commandsGrid) return;
     
     const filteredCommands = window.gitCommands.filter(cmd => {
+        const cmdInfo = getCommandInfo(cmd);
         const matchesFilter = currentFilter === 'all' || cmd.category === currentFilter;
-        const matchesSearch = !searchInput.value || 
-            cmd.title.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-            cmd.command.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-            cmd.description.toLowerCase().includes(searchInput.value.toLowerCase());
+        const searchValue = searchInput.value.toLowerCase();
+        const matchesSearch = !searchValue || 
+            cmdInfo.title.toLowerCase().includes(searchValue) ||
+            cmd.command.toLowerCase().includes(searchValue) ||
+            cmdInfo.description.toLowerCase().includes(searchValue);
         
         return matchesFilter && matchesSearch;
     });
@@ -22,7 +24,11 @@ function renderCommands() {
     });
     
     if (filteredCommands.length === 0) {
-        commandsGrid.innerHTML = '<div class="no-results">該当するコマンドが見つかりませんでした</div>';
+        const langData = getCurrentLanguageData();
+        const noResultsText = langData ? 
+            (langData.no_results || '該当するコマンドが見つかりませんでした') : 
+            '該当するコマンドが見つかりませんでした';
+        commandsGrid.innerHTML = `<div class="no-results">${noResultsText}</div>`;
     }
 }
 
@@ -30,6 +36,9 @@ function renderCommands() {
 function createCommandCard(cmd) {
     const card = document.createElement('div');
     card.className = 'command-card';
+    
+    const cmdInfo = getCommandInfo(cmd);
+    const langData = getCurrentLanguageData();
     
     const categoryColors = {
         'branch': '#28a745',
@@ -40,22 +49,25 @@ function createCommandCard(cmd) {
         'stash': '#6f42c1'
     };
     
+    // カテゴリ名の翻訳
+    const categoryName = langData ? langData[cmd.category] || getCategoryName(cmd.category) : getCategoryName(cmd.category);
+    
     card.innerHTML = `
         <div class="command-header">
-            <div class="command-title">${escapeHtml(cmd.title)}</div>
+            <div class="command-title">${escapeHtml(cmdInfo.title)}</div>
             <div class="command-category" style="background-color: ${categoryColors[cmd.category] || '#667eea'}">
-                ${getCategoryName(cmd.category)}
+                ${categoryName}
             </div>
         </div>
         <div class="command-code">${escapeHtml(cmd.command)}</div>
-        <div class="command-description">${escapeHtml(cmd.description)}</div>
+        <div class="command-description">${escapeHtml(cmdInfo.description)}</div>
         <div class="command-actions">
             ${cmd.hasParams ? 
-                `<button class="btn-param" data-title="${escapeHtml(cmd.title)}" data-command="${escapeHtml(cmd.command)}" data-param-label="${escapeHtml(cmd.paramLabel)}">
-                    <i class="fas fa-edit"></i> パラメータ入力
+                `<button class="btn-param" data-title="${escapeHtml(cmdInfo.title)}" data-command="${escapeHtml(cmd.command)}" data-param-label="${escapeHtml(cmd.paramLabel)}">
+                    <i class="fas fa-edit"></i> ${langData ? langData.parameter_input || 'パラメータ入力' : 'パラメータ入力'}
                 </button>` : 
-                `<button class="btn-copy" data-command="${escapeHtml(cmd.command)}" data-title="${escapeHtml(cmd.title)}">
-                    <i class="fas fa-copy"></i> コピー
+                `<button class="btn-copy" data-command="${escapeHtml(cmd.command)}" data-title="${escapeHtml(cmdInfo.title)}">
+                    <i class="fas fa-copy"></i> ${langData ? langData.copy || 'コピー' : 'コピー'}
                 </button>`
             }
         </div>
@@ -67,13 +79,13 @@ function createCommandCard(cmd) {
     
     if (paramBtn) {
         paramBtn.addEventListener('click', function() {
-            openModal(cmd.title, cmd.command, cmd.paramLabel);
+            openModal(cmdInfo.title, cmd.command, cmd.paramLabel);
         });
     }
     
     if (copyBtn) {
         copyBtn.addEventListener('click', function() {
-            copyCommand(cmd.command, cmd.title);
+            copyCommand(cmd.command, cmdInfo.title);
         });
     }
     
