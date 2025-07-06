@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Command Helper</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-git-alt"></i> Git Command Helper</h1>
+            <p>よく使うGitコマンドを素早くコピーしよう</p>
+        </header>
+
+        <div class="search-section">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="コマンドを検索...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">すべて</button>
+                <button class="filter-btn" data-category="branch">ブランチ</button>
+                <button class="filter-btn" data-category="commit">コミット</button>
+                <button class="filter-btn" data-category="reset">リセット</button>
+                <button class="filter-btn" data-category="remote">リモート</button>
+                <button class="filter-btn" data-category="log">ログ</button>
+                <button class="filter-btn" data-category="stash">スタッシュ</button>
+            </div>
+        </div>
+
+        <div class="commands-grid" id="commandsGrid">
+            <!-- コマンドは JavaScript で動的に生成 -->
+        </div>
+
+        <div class="custom-command-section">
+            <h2><i class="fas fa-plus-circle"></i> カスタムコマンド</h2>
+            <div class="custom-input-group">
+                <input type="text" id="customCommand" placeholder="カスタムコマンドを入力...">
+                <input type="text" id="customDescription" placeholder="説明を入力...">
+                <button id="addCustomCommand" class="btn-primary">
+                    <i class="fas fa-plus"></i> 追加
+                </button>
+            </div>
+            <div class="custom-commands-list" id="customCommandsList">
+                <!-- カスタムコマンドは JavaScript で動的に生成 -->
+            </div>
+        </div>
+
+        <div class="recent-section">
+            <h2><i class="fas fa-history"></i> 最近使用したコマンド</h2>
+            <div class="recent-commands" id="recentCommands">
+                <!-- 最近使用したコマンドは JavaScript で動的に生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダル -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>パラメータ入力</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="paramInput">パラメータを入力:</label>
+                    <input type="text" id="paramInput" placeholder="例: main, feature/new-feature">
+                </div>
+                <div class="generated-command">
+                    <label>生成されたコマンド:</label>
+                    <div class="command-preview" id="commandPreview"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="modalCancel">キャンセル</button>
+                <button class="btn-primary" id="modalCopy">コピー</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知 -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">コマンドをコピーしました！</span>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Git Command Helper - あなたの開発効率を向上させるツール</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
