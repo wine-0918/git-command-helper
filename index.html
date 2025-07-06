@@ -18,10 +18,10 @@
     <div class="container">
         <header>
             <div class="header-controls">
-                <button id="darkModeToggle" class="control-btn" title="ダークモード切り替え">
+                <button id="darkModeToggle" class="control-btn" title="ダークモード切り替え" data-tooltip-key="dark_mode_toggle">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button id="languageToggle" class="control-btn" title="言語切り替え">
+                <button id="languageToggle" class="control-btn" title="言語切り替え" data-tooltip-key="language_toggle">
                     <i class="fas fa-language"></i>
                     <span id="currentLang">日本語</span>
                 </button>
@@ -35,7 +35,9 @@
                 <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="コマンドを検索...">
             </div>
-            <div class="filter-buttons">
+            
+            <!-- デスクトップ用フィルターボタン -->
+            <div class="filter-buttons desktop-filters">
                 <button class="filter-btn active" data-category="all" data-key="all">すべて</button>
                 <button class="filter-btn" data-category="branch" data-key="branch">ブランチ</button>
                 <button class="filter-btn" data-category="commit" data-key="commit">コミット</button>
@@ -43,6 +45,24 @@
                 <button class="filter-btn" data-category="remote" data-key="remote">リモート</button>
                 <button class="filter-btn" data-category="log" data-key="log">ログ</button>
                 <button class="filter-btn" data-category="stash" data-key="stash">スタッシュ</button>
+            </div>
+            
+            <!-- モバイル用ハンバーガーメニュー -->
+            <div class="mobile-filter-container">
+                <button class="mobile-filter-toggle" id="mobileFilterToggle">
+                    <i class="fas fa-filter"></i>
+                    <span id="currentFilterName" data-key="all">すべて</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="mobile-filter-menu" id="mobileFilterMenu">
+                    <button class="mobile-filter-btn active" data-category="all" data-key="all">すべて</button>
+                    <button class="mobile-filter-btn" data-category="branch" data-key="branch">ブランチ</button>
+                    <button class="mobile-filter-btn" data-category="commit" data-key="commit">コミット</button>
+                    <button class="mobile-filter-btn" data-category="reset" data-key="reset">リセット</button>
+                    <button class="mobile-filter-btn" data-category="remote" data-key="remote">リモート</button>
+                    <button class="mobile-filter-btn" data-category="log" data-key="log">ログ</button>
+                    <button class="mobile-filter-btn" data-category="stash" data-key="stash">スタッシュ</button>
+                </div>
             </div>
         </div>
 

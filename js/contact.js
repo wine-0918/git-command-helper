@@ -18,11 +18,16 @@
     function handleFormSubmit(e) {
         e.preventDefault();
 
+        // 現在の言語データを取得
+        const langData = window.getCurrentLanguageData ? window.getCurrentLanguageData() : null;
+
         // 送信ボタンを無効化
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+        
+        const sendingText = langData && langData.sending ? langData.sending : '送信中...';
+        submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${sendingText}`;
 
         // フォームデータを取得
         const formData = {
@@ -71,11 +76,14 @@
                 
                 // 成功時の処理
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> 送信完了';
+                const successText = langData && langData.send_success ? langData.send_success : '送信完了';
+                submitBtn.innerHTML = `<i class="fas fa-check"></i> ${successText}`;
                 submitBtn.style.backgroundColor = '#28a745';
 
                 // 通知を表示
-                showNotification('お問い合わせを送信しました！確認メールもお送りしました。');
+                const successMessage = langData && langData.contact_success ? 
+                    langData.contact_success : 'お問い合わせを送信しました！確認メールもお送りしました。';
+                showNotification(successMessage);
 
                 // フォームをリセット
                 this.reset();
@@ -90,11 +98,13 @@
                 // エラー時の処理
                 console.error('送信エラー:', error);
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 再送信';
+                const retryText = langData && langData.retry_send ? langData.retry_send : '再送信';
+                submitBtn.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${retryText}`;
                 submitBtn.style.backgroundColor = '#dc3545';
 
                 // エラー詳細を表示
-                let errorMessage = 'お問い合わせの送信に失敗しました。';
+                let errorMessage = langData && langData.contact_error ? 
+                    langData.contact_error : 'お問い合わせの送信に失敗しました。';
                 if (error.text) {
                     console.error('エラー詳細:', error.text);
                 }

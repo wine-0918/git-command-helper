@@ -33,6 +33,22 @@ const languages = {
             command_copied: 'コマンドをコピーしました！',
             last_updated: '最終更新日: ',
             footer_text: 'あなたの開発効率を向上させるツール',
+            dark_mode_toggle: 'ダークモード切り替え',
+            language_toggle: '言語切り替え',
+            sending: '送信中...',
+            send_success: '送信完了',
+            retry_send: '再送信',
+            contact_success: 'お問い合わせを送信しました！確認メールもお送りしました。',
+            contact_error: 'お問い合わせの送信に失敗しました。',
+            copy_success: '"{title}" をコピーしました！',
+            copy_error: 'コピーに失敗しました',
+            param_required: 'パラメータを入力してください',
+            command_required: 'コマンドを入力してください',
+            description_required: '説明を入力してください',
+            duplicate_command: '同じコマンドが既に登録されています',
+            custom_command_added: 'カスタムコマンドを追加しました！',
+            custom_command_deleted: 'カスタムコマンドを削除しました',
+            delete_confirm: 'このカスタムコマンドを削除しますか？',
             // Git コマンドの説明
             commands: {
                 'git checkout -b {branch_name}': {
@@ -173,6 +189,22 @@ const languages = {
             command_copied: 'Command copied!',
             last_updated: 'Last updated: ',
             footer_text: 'A tool to improve your development efficiency',
+            dark_mode_toggle: 'Toggle dark mode',
+            language_toggle: 'Switch language',
+            sending: 'Sending...',
+            send_success: 'Sent',
+            retry_send: 'Retry',
+            contact_success: 'Your inquiry has been sent! We also sent you a confirmation email.',
+            contact_error: 'Failed to send your inquiry.',
+            copy_success: '"{title}" copied!',
+            copy_error: 'Failed to copy',
+            param_required: 'Please enter a parameter',
+            command_required: 'Please enter a command',
+            description_required: 'Please enter a description',
+            duplicate_command: 'This command is already registered',
+            custom_command_added: 'Custom command added!',
+            custom_command_deleted: 'Custom command deleted',
+            delete_confirm: 'Are you sure you want to delete this custom command?',
             commands: {
                 'git checkout -b {branch_name}': {
                     title: 'Create and switch to new branch',
@@ -312,6 +344,22 @@ const languages = {
             command_copied: '命令已复制！',
             last_updated: '最后更新: ',
             footer_text: '提高您开发效率的工具',
+            dark_mode_toggle: '切换暗黑模式',
+            language_toggle: '切换语言',
+            sending: '发送中...',
+            send_success: '发送完成',
+            retry_send: '重新发送',
+            contact_success: '您的咨询已发送！我们也向您发送了确认邮件。',
+            contact_error: '发送咨询失败。',
+            copy_success: '"{title}" 已复制！',
+            copy_error: '复制失败',
+            param_required: '请输入参数',
+            command_required: '请输入命令',
+            description_required: '请输入描述',
+            duplicate_command: '该命令已经注册',
+            custom_command_added: '自定义命令已添加！',
+            custom_command_deleted: '自定义命令已删除',
+            delete_confirm: '您确定要删除这个自定义命令吗？',
             commands: {
                 'git checkout -b {branch_name}': {
                     title: '创建并切换到新分支',
@@ -485,6 +533,14 @@ function updateUI() {
     if (addButton) {
         addButton.innerHTML = `<i class="fas fa-plus"></i> ${lang.add}`;
     }
+    
+    // ツールチップの更新
+    document.querySelectorAll('[data-tooltip-key]').forEach(element => {
+        const key = element.getAttribute('data-tooltip-key');
+        if (lang[key]) {
+            element.title = lang[key];
+        }
+    });
     
     // フォーム要素
     const nameInput = document.querySelector('input[name="user_name"]');

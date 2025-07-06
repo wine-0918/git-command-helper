@@ -144,6 +144,30 @@ body.dark-mode footer {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* 通知 */
+body.dark-mode .notification {
+    background: #2d2d2d;
+    border: 1px solid #444;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .notification i {
+    color: #4CAF50; /* 成功アイコンの色は維持 */
+}
+
+/* コントロールボタン */
+body.dark-mode .control-btn {
+    background: #2d2d2d;
+    border: 1px solid #444;
+    color: #ffffff;
+}
+
+body.dark-mode .control-btn:hover {
+    background: #333;
+    border-color: #555;
+}
+
 /* iPhone/モバイル向けダークモード */
 @media (max-width: 480px) {
     body.dark-mode .search-section,
