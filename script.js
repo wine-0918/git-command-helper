@@ -709,3 +709,17 @@ if (!navigator.clipboard) {
         }
     }
 }
+
+// 最終更新日を取得して表示する
+document.addEventListener("DOMContentLoaded", () => {
+    const lastUpdated = document.lastModified;
+    const lastUpdatedElement = document.getElementById("lastUpdated");
+
+    if (lastUpdatedElement) {
+        lastUpdatedElement.textContent = `最終更新日: ${new Date(lastUpdated).toLocaleDateString('ja-JP', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })}`;
+    }
+});
