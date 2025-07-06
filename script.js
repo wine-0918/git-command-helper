@@ -1,3 +1,10 @@
+// HTMLエスケープ関数
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 // Git Command Helper JavaScript
 
 // コマンドデータ
@@ -357,24 +364,40 @@ function createCommandCard(cmd) {
     
     card.innerHTML = `
         <div class="command-header">
-            <div class="command-title">${cmd.title}</div>
+            <div class="command-title">${escapeHtml(cmd.title)}</div>
             <div class="command-category" style="background-color: ${categoryColors[cmd.category] || '#667eea'}">
                 ${getCategoryName(cmd.category)}
             </div>
         </div>
-        <div class="command-code">${cmd.command}</div>
-        <div class="command-description">${cmd.description}</div>
+        <div class="command-code">${escapeHtml(cmd.command)}</div>
+        <div class="command-description">${escapeHtml(cmd.description)}</div>
         <div class="command-actions">
             ${cmd.hasParams ? 
-                `<button class="btn-param" onclick="openModal('${cmd.title}', '${cmd.command}', '${cmd.paramLabel}')">
+                `<button class="btn-param" data-title="${escapeHtml(cmd.title)}" data-command="${escapeHtml(cmd.command)}" data-param-label="${escapeHtml(cmd.paramLabel)}">
                     <i class="fas fa-edit"></i> パラメータ入力
                 </button>` : 
-                `<button class="btn-copy" onclick="copyCommand('${cmd.command}', '${cmd.title}')">
+                `<button class="btn-copy" data-command="${escapeHtml(cmd.command)}" data-title="${escapeHtml(cmd.title)}">
                     <i class="fas fa-copy"></i> コピー
                 </button>`
             }
         </div>
     `;
+    
+    // イベントリスナーを追加
+    const paramBtn = card.querySelector('.btn-param');
+    const copyBtn = card.querySelector('.btn-copy');
+    
+    if (paramBtn) {
+        paramBtn.addEventListener('click', function() {
+            openModal(cmd.title, cmd.command, cmd.paramLabel);
+        });
+    }
+    
+    if (copyBtn) {
+        copyBtn.addEventListener('click', function() {
+            copyCommand(cmd.command, cmd.title);
+        });
+    }
     
     return card;
 }
@@ -550,13 +573,19 @@ function renderRecentCommands() {
         item.className = 'recent-command-item';
         item.innerHTML = `
             <div class="recent-command-info">
-                <div class="recent-command-code">${cmd.command}</div>
-                <div class="recent-command-time">${cmd.timestamp}</div>
+                <div class="recent-command-code">${escapeHtml(cmd.command)}</div>
+                <div class="recent-command-time">${escapeHtml(cmd.timestamp)}</div>
             </div>
-            <button class="btn-copy" onclick="copyCommand('${cmd.command}', '${cmd.title}')">
+            <button class="btn-copy" data-command="${escapeHtml(cmd.command)}" data-title="${escapeHtml(cmd.title)}">
                 <i class="fas fa-copy"></i> コピー
             </button>
         `;
+        
+        // イベントリスナーを追加
+        const copyBtn = item.querySelector('.btn-copy');
+        copyBtn.addEventListener('click', function() {
+            copyCommand(cmd.command, cmd.title);
+        });
         
         recentCommandsContainer.appendChild(item);
     });
@@ -614,18 +643,30 @@ function renderCustomCommands() {
         item.className = 'custom-command-item';
         item.innerHTML = `
             <div class="custom-command-info">
-                <div class="custom-command-code">${cmd.command}</div>
-                <div class="custom-command-desc">${cmd.description}</div>
+                <div class="custom-command-code">${escapeHtml(cmd.command)}</div>
+                <div class="custom-command-desc">${escapeHtml(cmd.description)}</div>
             </div>
             <div class="custom-command-actions">
-                <button class="btn-copy" onclick="copyCommand('${cmd.command}', '${cmd.description}')">
+                <button class="btn-copy" data-command="${escapeHtml(cmd.command)}" data-title="${escapeHtml(cmd.description)}">
                     <i class="fas fa-copy"></i> コピー
                 </button>
-                <button class="btn-delete" onclick="deleteCustomCommand(${cmd.id})">
+                <button class="btn-delete" data-id="${cmd.id}">
                     <i class="fas fa-trash"></i> 削除
                 </button>
             </div>
         `;
+        
+        // イベントリスナーを追加
+        const copyBtn = item.querySelector('.btn-copy');
+        const deleteBtn = item.querySelector('.btn-delete');
+        
+        copyBtn.addEventListener('click', function() {
+            copyCommand(cmd.command, cmd.description);
+        });
+        
+        deleteBtn.addEventListener('click', function() {
+            deleteCustomCommand(cmd.id);
+        });
         
         customCommandsList.appendChild(item);
     });
