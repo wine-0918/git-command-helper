@@ -486,6 +486,11 @@ function switchLanguage(lang) {
     // 現在の言語表示を更新
     document.getElementById('currentLang').textContent = languages[lang].name;
     
+    // モバイルフィルターの表示名も更新
+    if (window.updateCurrentFilterName) {
+        window.updateCurrentFilterName();
+    }
+    
     // コマンドリストを再描画
     if (window.renderCommands) {
         window.renderCommands();
@@ -521,12 +526,21 @@ function updateUI() {
     }
     
     // フィルターボタンの更新
-    document.querySelectorAll('.filter-btn').forEach(btn => {
+    document.querySelectorAll('.filter-btn, .mobile-filter-btn').forEach(btn => {
         const category = btn.getAttribute('data-category');
         if (lang[category]) {
             btn.textContent = lang[category];
         }
     });
+    
+    // 現在のフィルター名も更新
+    const currentFilterName = document.getElementById('currentFilterName');
+    if (currentFilterName) {
+        const currentCategory = currentFilterName.getAttribute('data-key');
+        if (lang[currentCategory]) {
+            currentFilterName.textContent = lang[currentCategory];
+        }
+    }
     
     // その他の要素
     const addButton = document.querySelector('#addCustomCommand');

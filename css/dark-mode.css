@@ -168,6 +168,53 @@ body.dark-mode .control-btn:hover {
     border-color: #555;
 }
 
+/* モバイルフィルターメニュー */
+body.dark-mode .mobile-filter-toggle {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #ffffff;
+}
+
+body.dark-mode .mobile-filter-toggle:hover,
+body.dark-mode .mobile-filter-toggle.active {
+    border-color: #667eea;
+    background: #333;
+}
+
+body.dark-mode .mobile-filter-toggle i:first-child {
+    color: #667eea;
+}
+
+body.dark-mode .mobile-filter-toggle i:last-child {
+    color: #aaa;
+}
+
+body.dark-mode .mobile-filter-menu {
+    background: #2d2d2d;
+    border-color: #444;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .mobile-filter-menu.show {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .mobile-filter-btn {
+    background: #2d2d2d;
+    border-bottom-color: #444;
+    color: #ffffff;
+}
+
+body.dark-mode .mobile-filter-btn:hover {
+    background: #333;
+    color: #667eea;
+}
+
+body.dark-mode .mobile-filter-btn.active {
+    background: #667eea;
+    color: white;
+}
+
 /* iPhone/モバイル向けダークモード */
 @media (max-width: 480px) {
     body.dark-mode .search-section,

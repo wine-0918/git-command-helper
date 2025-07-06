@@ -1,5 +1,95 @@
 /* レスポンシブスタイル */
 
+/* モバイル用フィルターメニュー - デフォルトは非表示 */
+.mobile-filter-container {
+    display: none;
+    position: relative;
+}
+
+.mobile-filter-toggle {
+    width: 100%;
+    padding: 12px 16px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    color: #333;
+}
+
+.mobile-filter-toggle:hover,
+.mobile-filter-toggle.active {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.mobile-filter-toggle i:first-child {
+    color: #667eea;
+    margin-right: 8px;
+}
+
+.mobile-filter-toggle i:last-child {
+    transition: transform 0.3s ease;
+    color: #888;
+}
+
+.mobile-filter-toggle.active i:last-child {
+    transform: rotate(180deg);
+}
+
+.mobile-filter-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    z-index: 100;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.mobile-filter-menu.show {
+    max-height: 300px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.mobile-filter-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: white;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.mobile-filter-btn:hover {
+    background: #f8f9ff;
+    color: #667eea;
+}
+
+.mobile-filter-btn.active {
+    background: #667eea;
+    color: white;
+    font-weight: 600;
+}
+
+.mobile-filter-btn:last-child {
+    border-bottom: none;
+}
+
 /* タブレット対応 */
 @media (max-width: 768px) {
     .container {
@@ -21,6 +111,16 @@
     
     .custom-input-group input {
         min-width: auto;
+    }
+    
+    /* デスクトップフィルターを非表示、モバイルフィルターを表示 */
+    .desktop-filters {
+        display: none;
+    }
+    
+    .mobile-filter-container {
+        display: block;
+        margin-bottom: 20px;
     }
     
     footer {
@@ -45,6 +145,27 @@
         padding-right: max(10px, env(safe-area-inset-right));
         padding-bottom: max(10px, env(safe-area-inset-bottom));
         touch-action: pan-y;
+    }
+    
+    /* モバイルフィルターのサイズ調整 */
+    .mobile-filter-toggle {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+    }
+    
+    .mobile-filter-btn {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+    }
+    
+    /* Z-indexの調整（モーダルとの競合を避ける） */
+    .mobile-filter-menu {
+        z-index: 50;
+    }
+    
+    /* モーダルのZ-index */
+    .modal-overlay {
+        z-index: 1000;
     }
     
     header {

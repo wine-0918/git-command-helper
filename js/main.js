@@ -10,6 +10,7 @@ let searchInput, commandsGrid, filterButtons, customCommandInput, customDescript
 let addCustomCommandBtn, customCommandsList, recentCommandsContainer;
 let modal, modalClose, modalCancel, modalCopy, paramInput, commandPreview;
 let notification, notificationText;
+let mobileFilterToggle, mobileFilterMenu, mobileFilterButtons, currentFilterName;
 
 // 現在のモーダル用データ
 let currentModalCommand = null;
@@ -96,6 +97,11 @@ window.updateLastModified = updateLastModified;
 window.initializeDarkMode = initializeDarkMode;
 window.toggleDarkMode = toggleDarkMode;
 window.updateDarkModeIcon = updateDarkModeIcon;
+window.handleFilterChange = handleFilterChange;
+window.handleMobileFilterChange = handleMobileFilterChange;
+window.toggleMobileFilterMenu = toggleMobileFilterMenu;
+window.syncMobileFilter = syncMobileFilter;
+window.updateCurrentFilterName = updateCurrentFilterName;
 
 // 初期化
 document.addEventListener('DOMContentLoaded', function() {
@@ -114,6 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     renderCustomCommands();
     renderRecentCommands();
+    
+    // モバイルフィルターを初期状態に同期
+    syncMobileFilter();
     
     // 最終更新日を設定
     updateLastModified();
@@ -137,6 +146,12 @@ function initializeElements() {
     commandPreview = document.getElementById('commandPreview');
     notification = document.getElementById('notification');
     notificationText = document.getElementById('notificationText');
+    
+    // モバイルフィルター要素
+    mobileFilterToggle = document.getElementById('mobileFilterToggle');
+    mobileFilterMenu = document.getElementById('mobileFilterMenu');
+    mobileFilterButtons = document.querySelectorAll('.mobile-filter-btn');
+    currentFilterName = document.getElementById('currentFilterName');
 }
 
 // ローカルストレージからデータを読み込み
@@ -166,9 +181,26 @@ function setupEventListeners() {
         searchInput.addEventListener('input', handleSearch);
     }
     
-    // フィルターボタン
+    // デスクトップフィルターボタン
     filterButtons.forEach(btn => {
         btn.addEventListener('click', handleFilterChange);
+    });
+    
+    // モバイルフィルターボタン
+    mobileFilterButtons.forEach(btn => {
+        btn.addEventListener('click', handleMobileFilterChange);
+    });
+    
+    // モバイルフィルタートグル
+    if (mobileFilterToggle) {
+        mobileFilterToggle.addEventListener('click', toggleMobileFilterMenu);
+    }
+    
+    // モバイルフィルターメニュー外クリックで閉じる
+    document.addEventListener('click', function(e) {
+        if (mobileFilterMenu && !mobileFilterToggle.contains(e.target) && !mobileFilterMenu.contains(e.target)) {
+            closeMobileFilterMenu();
+        }
     });
     
     // カスタムコマンド追加
@@ -216,6 +248,7 @@ function setupEventListeners() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeModal();
+            closeMobileFilterMenu();
         }
     });
 }
@@ -236,8 +269,92 @@ function handleFilterChange(e) {
     // 現在のフィルターを更新
     currentFilter = e.target.dataset.category;
     
+    // モバイルフィルターも同期
+    syncMobileFilter();
+    
     // コマンドを再表示
     renderCommands();
+}
+
+// モバイルフィルター変更処理
+function handleMobileFilterChange(e) {
+    // 全てのモバイルフィルターボタンからactiveクラスを削除
+    mobileFilterButtons.forEach(btn => btn.classList.remove('active'));
+    
+    // クリックされたボタンにactiveクラスを追加
+    e.target.classList.add('active');
+    
+    // 現在のフィルターを更新
+    currentFilter = e.target.dataset.category;
+    
+    // デスクトップフィルターも同期
+    syncDesktopFilter();
+    
+    // 表示名を更新
+    updateCurrentFilterName();
+    
+    // メニューを閉じる
+    closeMobileFilterMenu();
+    
+    // コマンドを再表示
+    renderCommands();
+}
+
+// モバイルフィルターメニューの開閉
+function toggleMobileFilterMenu() {
+    if (mobileFilterMenu) {
+        const isOpen = mobileFilterMenu.classList.contains('show');
+        if (isOpen) {
+            closeMobileFilterMenu();
+        } else {
+            openMobileFilterMenu();
+        }
+    }
+}
+
+function openMobileFilterMenu() {
+    if (mobileFilterMenu && mobileFilterToggle) {
+        mobileFilterMenu.classList.add('show');
+        mobileFilterToggle.classList.add('active');
+    }
+}
+
+function closeMobileFilterMenu() {
+    if (mobileFilterMenu && mobileFilterToggle) {
+        mobileFilterMenu.classList.remove('show');
+        mobileFilterToggle.classList.remove('active');
+    }
+}
+
+// フィルター同期機能
+function syncMobileFilter() {
+    mobileFilterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.category === currentFilter) {
+            btn.classList.add('active');
+        }
+    });
+    updateCurrentFilterName();
+}
+
+function syncDesktopFilter() {
+    filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.category === currentFilter) {
+            btn.classList.add('active');
+        }
+    });
+}
+
+// 現在のフィルター名を更新
+function updateCurrentFilterName() {
+    if (currentFilterName) {
+        const activeBtn = document.querySelector(`.mobile-filter-btn[data-category="${currentFilter}"]`);
+        if (activeBtn) {
+            currentFilterName.textContent = activeBtn.textContent;
+            currentFilterName.setAttribute('data-key', activeBtn.getAttribute('data-key'));
+        }
+    }
 }
 
 // エラーハンドリング
