@@ -1,0 +1,264 @@
+/* レスポンシブスタイル */
+
+/* タブレット対応 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .commands-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+    }
+    
+    .custom-input-group {
+        flex-direction: column;
+    }
+    
+    .custom-input-group input {
+        min-width: auto;
+    }
+    
+    footer {
+        margin: 20px 15px 15px;
+        padding: 20px 15px;
+    }
+    
+    footer p:first-child {
+        font-size: 1rem;
+    }
+    
+    footer p:last-child {
+        font-size: 0.85rem;
+    }
+}
+
+/* iPhone/スマートフォン対応 */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        touch-action: pan-y;
+    }
+    
+    header {
+        padding-top: max(0px, env(safe-area-inset-top));
+        margin-bottom: 20px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+    
+    header p {
+        font-size: 1rem;
+    }
+    
+    .header-controls {
+        position: relative;
+        margin-top: 15px;
+        justify-content: center;
+    }
+    
+    .search-section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .commands-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .command-card {
+        padding: 15px;
+    }
+    
+    .command-title {
+        font-size: 1rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    
+    .command-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-copy,
+    .btn-param {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+    }
+    
+    .custom-command-section,
+    .recent-section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .custom-command-section h2,
+    .recent-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .custom-command-item,
+    .recent-command-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .custom-command-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .recent-command-item .btn-copy {
+        align-self: flex-end;
+        width: auto;
+        min-height: 36px;
+    }
+    
+    /* モーダル調整 */
+    .modal {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 15px;
+    }
+    
+    /* お問い合わせフォーム */
+    .contact-section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .contact-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .contact-section input,
+    .contact-section textarea {
+        padding: 14px 12px;
+        font-size: 16px; /* iOSのズーム防止 */
+    }
+    
+    .contact-section textarea {
+        min-height: 100px;
+    }
+    
+    .contact-section button[type="submit"] {
+        width: 100%;
+        min-height: 44px;
+        justify-content: center;
+        align-self: stretch;
+    }
+    
+    /* フッター */
+    footer {
+        margin: 15px 10px 10px;
+        padding: 18px 12px;
+        border-radius: 8px;
+    }
+    
+    footer p:first-child {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+    
+    footer p:last-child {
+        font-size: 0.8rem;
+    }
+    
+    /* 通知 */
+    .notification {
+        top: max(10px, env(safe-area-inset-top));
+        right: 10px;
+        left: 10px;
+        transform: translateY(-100%);
+    }
+    
+    .notification.show {
+        transform: translateY(0);
+    }
+}
+
+/* タッチ操作の改善 */
+@media (max-width: 480px) {
+    /* タッチハイライトの無効化 */
+    * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    /* テキスト選択可能な要素 */
+    .command-code,
+    .custom-command-code,
+    .recent-command-code,
+    .command-preview,
+    input,
+    textarea {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+    
+    /* ボタンのタッチフィードバック */
+    button {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+        touch-action: manipulation;
+    }
+    
+    /* スクロール最適化 */
+    .commands-grid,
+    .custom-commands-list,
+    .recent-commands {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* アクティブ状態の調整 */
+    .command-card:active {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    
+    .btn-copy:active,
+    .btn-param:active,
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-delete:active {
+        transform: scale(0.98);
+    }
+    
+    .filter-btn:active {
+        transform: scale(0.95);
+    }
+    
+    /* フォーカス状態の改善 */
+    input:focus,
+    button:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+}

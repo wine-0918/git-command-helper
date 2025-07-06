@@ -1,0 +1,186 @@
+/* セクションとフォームスタイル */
+
+/* カスタムコマンドセクション */
+.custom-command-section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.custom-command-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.custom-input-group input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.custom-input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.custom-commands-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.custom-command-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-command-info {
+    flex: 1;
+}
+
+.custom-command-code {
+    font-family: 'Courier New', monospace;
+    color: #d63384;
+    font-weight: 600;
+}
+
+.custom-command-desc {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.custom-command-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* 最近使用したコマンドセクション */
+.recent-section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.recent-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recent-commands {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recent-command-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.recent-command-item:hover {
+    background: #e9ecef;
+}
+
+.recent-command-code {
+    font-family: 'Courier New', monospace;
+    color: #d63384;
+    font-size: 0.9rem;
+}
+
+.recent-command-time {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* お問い合わせセクション */
+.contact-section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-section input,
+.contact-section textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: vertical;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.contact-section textarea {
+    min-height: 120px;
+    max-height: 300px;
+}
+
+.contact-section button[type="submit"] {
+    align-self: flex-start;
+    min-width: 120px;
+}
+
+.contact-section button[type="submit"]:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
+}
+
+.contact-section button[type="submit"]:active {
+    transform: translateY(0);
+}

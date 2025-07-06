@@ -1,0 +1,241 @@
+/* ダークモードスタイル */
+
+/* ダークモード基本設定 */
+body.dark-mode {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #ffffff;
+}
+
+body.dark-mode .container {
+    color: #ffffff;
+}
+
+/* セクション背景 */
+body.dark-mode .search-section,
+body.dark-mode .custom-command-section,
+body.dark-mode .recent-section,
+body.dark-mode .contact-section {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    color: #ffffff;
+}
+
+body.dark-mode .command-card {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-left: 4px solid #667eea;
+}
+
+/* テキストカラー */
+body.dark-mode .search-section h2,
+body.dark-mode .custom-command-section h2,
+body.dark-mode .recent-section h2,
+body.dark-mode .contact-section h2,
+body.dark-mode .command-title {
+    color: #ffffff;
+}
+
+body.dark-mode .command-description,
+body.dark-mode .custom-command-desc,
+body.dark-mode .recent-command-time {
+    color: #cccccc;
+}
+
+/* 入力フィールド */
+body.dark-mode .search-box input,
+body.dark-mode .custom-input-group input,
+body.dark-mode .input-group input,
+body.dark-mode .contact-section input,
+body.dark-mode .contact-section textarea {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #ffffff;
+}
+
+body.dark-mode .search-box input::placeholder,
+body.dark-mode .custom-input-group input::placeholder,
+body.dark-mode .input-group input::placeholder,
+body.dark-mode .contact-section input::placeholder,
+body.dark-mode .contact-section textarea::placeholder {
+    color: #888;
+}
+
+body.dark-mode .search-box input:focus,
+body.dark-mode .custom-input-group input:focus,
+body.dark-mode .input-group input:focus,
+body.dark-mode .contact-section input:focus,
+body.dark-mode .contact-section textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* コードブロック */
+body.dark-mode .command-code,
+body.dark-mode .custom-command-code,
+body.dark-mode .recent-command-code,
+body.dark-mode .command-preview {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #ff6b9d;
+}
+
+/* フィルターボタン */
+body.dark-mode .filter-btn {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #ffffff;
+}
+
+body.dark-mode .filter-btn:hover {
+    background: #333;
+}
+
+body.dark-mode .filter-btn.active {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+/* アイテム背景 */
+body.dark-mode .custom-command-item,
+body.dark-mode .recent-command-item {
+    background: #2d2d2d;
+    border-color: #444;
+}
+
+body.dark-mode .custom-command-item:hover,
+body.dark-mode .recent-command-item:hover {
+    background: #333;
+}
+
+/* モーダル */
+body.dark-mode .modal {
+    background: #1e1e1e;
+    border: 1px solid #333;
+}
+
+body.dark-mode .modal-header {
+    border-bottom-color: #333;
+}
+
+body.dark-mode .modal-header h3 {
+    color: #ffffff;
+}
+
+body.dark-mode .modal-body label,
+body.dark-mode .generated-command label {
+    color: #ffffff;
+}
+
+body.dark-mode .modal-footer {
+    border-top-color: #333;
+}
+
+body.dark-mode .modal-close {
+    color: #cccccc;
+}
+
+body.dark-mode .modal-close:hover {
+    color: #ffffff;
+}
+
+/* フッター */
+body.dark-mode footer {
+    background: rgba(30, 30, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* iPhone/モバイル向けダークモード */
+@media (max-width: 480px) {
+    body.dark-mode .search-section,
+    body.dark-mode .custom-command-section,
+    body.dark-mode .recent-section,
+    body.dark-mode .command-card,
+    body.dark-mode .modal,
+    body.dark-mode .contact-section {
+        background: #1e1e1e;
+        color: #ffffff;
+        border-color: #333;
+    }
+    
+    body.dark-mode .command-code,
+    body.dark-mode .custom-command-code,
+    body.dark-mode .recent-command-code,
+    body.dark-mode .command-preview {
+        background: #2d2d2d;
+        border-color: #444;
+        color: #ff6b9d;
+    }
+    
+    body.dark-mode .search-box input,
+    body.dark-mode .custom-input-group input,
+    body.dark-mode .input-group input,
+    body.dark-mode .contact-section input,
+    body.dark-mode .contact-section textarea {
+        background: #2d2d2d;
+        border-color: #444;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .contact-section input:focus,
+    body.dark-mode .contact-section textarea:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+    
+    body.dark-mode footer {
+        background: rgba(30, 30, 30, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* プリファレンス基準のダークモード */
+@media (prefers-color-scheme: dark) and (max-width: 480px) {
+    .search-section,
+    .custom-command-section,
+    .recent-section,
+    .command-card,
+    .modal,
+    .contact-section {
+        background: #1e1e1e;
+        color: #ffffff;
+        border-color: #333;
+    }
+    
+    .command-code,
+    .custom-command-code,
+    .recent-command-code,
+    .command-preview {
+        background: #2d2d2d;
+        border-color: #444;
+        color: #ff6b9d;
+    }
+    
+    .search-box input,
+    .custom-input-group input,
+    .input-group input,
+    .contact-section input,
+    .contact-section textarea {
+        background: #2d2d2d;
+        border-color: #444;
+        color: #ffffff;
+    }
+    
+    .search-box input::placeholder,
+    .custom-input-group input::placeholder,
+    .input-group input::placeholder,
+    .contact-section input::placeholder,
+    .contact-section textarea::placeholder {
+        color: #888;
+    }
+    
+    .contact-section input:focus,
+    .contact-section textarea:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+    
+    footer {
+        background: rgba(30, 30, 30, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
