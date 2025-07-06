@@ -72,6 +72,9 @@ function toggleDarkMode() {
         localStorage.setItem('darkMode', 'enabled');
         updateDarkModeIcon(true);
     }
+    
+    // ダークモード切り替え後に表示制御を確実に実行
+    handleWindowResize();
 }
 
 function updateDarkModeIcon(isDarkMode) {
@@ -123,6 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // モバイルフィルターを初期状態に同期
     syncMobileFilter();
+    
+    // 画面サイズに応じた初期表示設定
+    handleWindowResize();
     
     // 最終更新日を設定
     updateLastModified();
@@ -251,6 +257,9 @@ function setupEventListeners() {
             closeMobileFilterMenu();
         }
     });
+    
+    // ウィンドウリサイズ時の処理
+    window.addEventListener('resize', handleWindowResize);
 }
 
 // 検索処理
@@ -354,6 +363,33 @@ function updateCurrentFilterName() {
             currentFilterName.textContent = activeBtn.textContent;
             currentFilterName.setAttribute('data-key', activeBtn.getAttribute('data-key'));
         }
+    }
+}
+
+// ウィンドウリサイズ時の処理
+function handleWindowResize() {
+    const isMobile = window.innerWidth <= 768;
+    const mobileContainer = document.querySelector('.mobile-filter-container');
+    const desktopFilters = document.querySelector('.desktop-filters');
+    
+    if (isMobile) {
+        // モバイルサイズ: モバイルメニューを表示、デスクトップフィルターを非表示
+        if (mobileContainer) {
+            mobileContainer.style.display = 'block';
+        }
+        if (desktopFilters) {
+            desktopFilters.style.display = 'none';
+        }
+    } else {
+        // デスクトップサイズ: デスクトップフィルターを表示、モバイルメニューを非表示
+        if (mobileContainer) {
+            mobileContainer.style.display = 'none';
+        }
+        if (desktopFilters) {
+            desktopFilters.style.display = 'flex';
+        }
+        // モバイルメニューを閉じる
+        closeMobileFilterMenu();
     }
 }
 

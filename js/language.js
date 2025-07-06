@@ -587,6 +587,11 @@ function updateUI() {
     if (footer) {
         footer.innerHTML = `&copy; 2025 Git Command Helper - ${lang.footer_text}`;
     }
+    
+    // 画面サイズに応じた表示制御を確実に実行
+    if (window.handleWindowResize) {
+        window.handleWindowResize();
+    }
 }
 
 // 翻訳されたコマンド情報を取得
