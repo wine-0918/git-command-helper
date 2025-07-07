@@ -12,36 +12,74 @@
     
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-domain.com/update-history.html">
+    <meta property="og:url" content="https://your-domain.com/html/update-history.html">
     <meta property="og:title" content="Webページ更新履歴 - Git Command Helper">
     <meta property="og:description" content="Git Command Helperの詳細な更新履歴・変更ログをご確認いただけます。">
     <meta property="og:site_name" content="Git Command Helper">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://your-domain.com/update-history.html">
+    <link rel="canonical" href="https://your-domain.com/html/update-history.html">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/sections.css">
-    <link rel="stylesheet" href="css/modal.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/dark-mode.css">
+    <!-- CSS (パス修正) -->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/sections.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- update-history.html専用スタイル -->
     <style>
-        /* ヘッダーレイアウト調整 */
+        /* ヘッダーレイアウト調整 - index.htmlと同じスタイル */
         header {
             text-align: center;
             margin-bottom: 40px;
             position: relative;
         }
         
+        .header-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .control-btn i {
+            font-size: 1rem;
+        }
+
+        #currentLang {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
         header h1 {
             color: white;
             font-size: 2.5rem;
-            margin: 20px 0 10px 0;
+            margin: 60px 0 10px 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -55,11 +93,20 @@
         header p {
             color: rgba(255, 255, 255, 0.9);
             font-size: 1.1rem;
-            margin: 0;
+            margin: 0 0 20px 0;
         }
         
         .nav-actions {
             margin-top: 20px;
+        }
+        
+        /* ダークモード対応 - header controls */
+        body.dark-mode .control-btn {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .control-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
         }
         
         /* 更新履歴専用スタイル */
@@ -196,6 +243,30 @@
         
         /* レスポンシブ対応 */
         @media (max-width: 768px) {
+            .header-controls {
+                top: 10px;
+                right: 10px;
+                gap: 5px;
+            }
+
+            .control-btn {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+
+            .control-btn i {
+                font-size: 0.9rem;
+            }
+
+            #currentLang {
+                display: none;
+            }
+
+            header h1 {
+                font-size: 2rem;
+                margin: 50px 0 10px 0;
+            }
+            
             .update-timeline {
                 padding-left: 20px;
             }
@@ -228,7 +299,7 @@
         "@type": "WebPage",
         "name": "Webページ更新履歴 - Git Command Helper",
         "description": "Git Command Helperの詳細な更新履歴・変更ログ",
-        "url": "https://your-domain.com/update-history.html",
+        "url": "https://your-domain.com/html/update-history.html",
         "isPartOf": {
             "@type": "WebSite",
             "name": "Git Command Helper",
@@ -276,17 +347,17 @@
         </div>
 
         <footer>
-            <p>&copy; 2025 Git Command Helper - あなたの開発効率を向上させるツール</p>
-            <p><a href="html/privacy.html" data-key="privacy_policy">プライバシーポリシー</a></p>
+            <p>&copy; 2025 Git Command Helper - <span data-key="footer_text">あなたの開発効率を向上させるツール</span></p>
+            <p><a href="privacy.html" data-key="privacy_policy">プライバシーポリシー</a></p>
             <p id="lastUpdated">最終更新日: 2025年7月8日</p>
         </footer>
     </div>
 
-    <!-- カスタムスクリプト -->
-    <script src="js/seo.js"></script>
-    <script src="js/background.js"></script>
-    <script src="js/language.js"></script>
-    <script src="js/update-history.js"></script>
+    <!-- カスタムスクリプト (パス修正) -->
+    <script src="../js/seo.js"></script>
+    <script src="../js/background.js"></script>
+    <script src="../js/language.js"></script>
+    <script src="../js/update-history.js"></script>
     <script>
         // ページ初期化
         document.addEventListener('DOMContentLoaded', function() {
@@ -295,7 +366,9 @@
             initializeDarkMode();
             
             // 背景アニメーション初期化
-            initBackground();
+            if (typeof initBackground === 'function') {
+                initBackground();
+            }
             
             // 詳細な更新履歴の表示
             if (typeof renderFullUpdateHistory === 'function') {
@@ -304,33 +377,28 @@
             
             // 戻るボタンのイベントリスナー
             document.getElementById('backButton').addEventListener('click', function() {
-                window.history.back();
+                window.location.href = '../index.html';
             });
             
             // ダークモードトグル
             document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
             
             // 言語切り替え
-            document.getElementById('languageToggle').addEventListener('click', switchLanguage);
+            document.getElementById('languageToggle').addEventListener('click', switchToNextLanguage);
         });
         
         // 言語切り替え関数
-        function switchLanguage() {
+        function switchToNextLanguage() {
             const currentLang = localStorage.getItem('language') || 'ja';
             const languages = ['ja', 'en', 'zh'];
             const currentIndex = languages.indexOf(currentLang);
             const nextIndex = (currentIndex + 1) % languages.length;
             const nextLang = languages[nextIndex];
             
-            // グローバル言語変数を更新
-            window.currentLanguage = nextLang;
+            // 新しい言語を保存
             localStorage.setItem('language', nextLang);
             
-            // 言語表示を更新
-            const langNames = { ja: '日本語', en: 'English', zh: '中文' };
-            document.getElementById('currentLang').textContent = langNames[nextLang];
-            
-            // 言語UI要素を更新
+            // 言語システムの現在の言語を更新
             if (typeof window.switchLanguage === 'function') {
                 window.switchLanguage(nextLang);
             }
@@ -356,7 +424,9 @@
             if (isDark) {
                 document.body.classList.add('dark-mode');
                 const icon = document.querySelector('#darkModeToggle i');
-                icon.className = 'fas fa-sun';
+                if (icon) {
+                    icon.className = 'fas fa-sun';
+                }
             }
         }
     </script>

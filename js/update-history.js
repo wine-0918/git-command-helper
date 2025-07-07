@@ -184,7 +184,7 @@ function generateUpdateHistory() {
         const moreLink = document.createElement('div');
         moreLink.className = 'update-more-link';
         moreLink.innerHTML = `
-            <a href="update-history.html" class="btn-primary">
+            <a href="html/update-history.html" class="btn-primary">
                 <i class="fas fa-history"></i>
                 <span data-key="view_all_updates">すべての更新履歴を見る</span>
             </a>

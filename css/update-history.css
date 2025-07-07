@@ -1,0 +1,265 @@
+/* update-history.html専用スタイル */
+
+/* ヘッダーレイアウト調整 - index.htmlと同じスタイル */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.header-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.control-btn i {
+    font-size: 1rem;
+}
+
+#currentLang {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+header h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin: 60px 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+header h1 i {
+    color: white;
+}
+
+header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin: 0 0 20px 0;
+}
+
+.nav-actions {
+    margin-top: 20px;
+}
+
+/* ダークモード対応 - header controls */
+body.dark-mode .control-btn {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .control-btn:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* 更新履歴専用スタイル */
+.full-update-history-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+}
+
+.full-update-history-section h2 {
+    color: white;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.update-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.update-timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #4CAF50, #2196F3);
+}
+
+.update-item {
+    position: relative;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    margin-left: 20px;
+    border-left: 3px solid #4CAF50;
+}
+
+.update-item::before {
+    content: '';
+    position: absolute;
+    left: -35px;
+    top: 20px;
+    width: 12px;
+    height: 12px;
+    background: #4CAF50;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.update-date {
+    color: #4CAF50;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.update-content h3 {
+    color: white;
+    margin: 0 0 15px 0;
+    font-size: 1.3rem;
+}
+
+.update-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.update-content li {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 5px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.update-content li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-size: 0.8rem;
+}
+
+/* ダークモード対応 */
+body.dark-mode .full-update-history-section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .update-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-left-color: #2196F3;
+}
+
+body.dark-mode .update-item::before {
+    background: #2196F3;
+    border-color: #1a1a1a;
+}
+
+body.dark-mode .update-date {
+    color: #2196F3;
+}
+
+body.dark-mode .update-content li::before {
+    color: #2196F3;
+}
+
+/* フッタースタイル調整 */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: white;
+}
+
+/* ダークモード対応 */
+body.dark-mode footer {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .header-controls {
+        top: 10px;
+        right: 10px;
+        gap: 5px;
+    }
+
+    .control-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .control-btn i {
+        font-size: 0.9rem;
+    }
+
+    #currentLang {
+        display: none;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        margin: 50px 0 10px 0;
+    }
+
+    .update-timeline {
+        padding-left: 20px;
+    }
+    
+    .update-item {
+        margin-left: 10px;
+        padding: 15px;
+    }
+    
+    .update-item::before {
+        left: -25px;
+        width: 8px;
+        height: 8px;
+    }
+    
+    .update-timeline::before {
+        left: 10px;
+    }
+    
+    .full-update-history-section {
+        padding: 20px;
+    }
+}

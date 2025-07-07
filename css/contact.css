@@ -1,0 +1,130 @@
+/* contact.html専用スタイル */
+
+/* ヘッダーレイアウト調整 - index.htmlと同じスタイル */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.header-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.control-btn i {
+    font-size: 1rem;
+}
+
+#currentLang {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+header h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin: 60px 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+header h1 i {
+    color: white;
+}
+
+header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin: 0 0 20px 0;
+}
+
+.nav-actions {
+    margin-top: 20px;
+}
+
+/* ダークモード対応 - header controls */
+body.dark-mode .control-btn {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .control-btn:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* フッタースタイル調整 */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: white;
+}
+
+/* ダークモード対応 */
+body.dark-mode footer {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .header-controls {
+        top: 10px;
+        right: 10px;
+        gap: 5px;
+    }
+
+    .control-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .control-btn i {
+        font-size: 0.9rem;
+    }
+
+    #currentLang {
+        display: none;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        margin: 50px 0 10px 0;
+    }
+}
