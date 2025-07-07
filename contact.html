@@ -29,6 +29,58 @@
     <link rel="stylesheet" href="css/dark-mode.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- contact.html専用スタイル -->
+    <style>
+        /* ヘッダーレイアウト調整 */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        header h1 i {
+            color: white;
+        }
+        
+        .nav-actions {
+            margin-top: 20px;
+        }
+        
+        /* フッタースタイル調整 */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+        }
+        
+        footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        /* ダークモード対応 */
+        body.dark-mode footer {
+            background: rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    
     <!-- 構造化データ -->
     <script type="application/ld+json">
     {
@@ -46,32 +98,27 @@
     </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <div class="nav-left">
-                    <h1>
-                        <a href="index.html" data-key="title">Git Command Helper</a>
-                    </h1>
-                    <button id="backButton" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i>
-                        <span data-key="back">戻る</span>
-                    </button>
-                </div>
-                <div class="nav-right">
-                    <button id="darkModeToggle" class="icon-btn" data-tooltip-key="dark_mode_toggle" title="ダークモード切り替え">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button id="languageToggle" class="icon-btn" data-tooltip-key="language_toggle" title="言語切り替え">
-                        <span id="currentLang">日本語</span>
-                    </button>
-                </div>
+    <div class="container">
+        <header>
+            <div class="header-controls">
+                <button id="darkModeToggle" class="control-btn" title="ダークモード切り替え" data-tooltip-key="dark_mode_toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageToggle" class="control-btn" title="言語切り替え" data-tooltip-key="language_toggle">
+                    <i class="fas fa-language"></i>
+                    <span id="currentLang">日本語</span>
+                </button>
             </div>
-        </nav>
-    </header>
+            <h1><i class="fab fa-git-alt"></i> <span data-key="title">Git Command Helper</span></h1>
+            <div class="nav-actions">
+                <button id="backButton" class="btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-key="back">戻る</span>
+                </button>
+            </div>
+        </header>
 
-    <main>
-        <div class="container">
+        <main>
             <section class="contact-section">
                 <h2 data-key="contact">お問い合わせ</h2>
                 <p data-key="contact_description">ご質問やご意見がございましたら、お気軽にお問い合わせください。</p>
@@ -110,20 +157,20 @@
                         ></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" data-key="send">
+                    <button type="submit" class="btn-primary" data-key="send">
+                        <i class="fas fa-paper-plane"></i>
                         送信
                     </button>
                 </form>
             </section>
-        </div>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Git Command Helper - <span data-key="footer_text">あなたの開発効率を向上させるツール</span></p>
-            <p data-key="last_updated">最終更新日: </p>
-        </div>
-    </footer>
+            <footer>
+                <p>&copy; 2025 Git Command Helper - <span data-key="footer_text">あなたの開発効率を向上させるツール</span></p>
+                <p><a href="html/privacy.html">プライバシーポリシー</a></p>
+                <p id="lastUpdated" data-key="last_updated">最終更新日: </p>
+            </footer>
+        </main>
+    </div>
 
     <!-- 通知 -->
     <div id="notification" class="notification"></div>
@@ -176,11 +223,14 @@
         // 最終更新日の設定
         function updateLastModified() {
             const lang = getCurrentLanguageData();
-            const lastUpdatedElement = document.querySelector('[data-key="last_updated"]');
+            const lastUpdatedElement = document.getElementById('lastUpdated');
             if (lastUpdatedElement) {
                 lastUpdatedElement.textContent = lang.last_updated + '2025年7月8日';
             }
         }
+
+        // グローバル関数として公開
+        window.updateLastModified = updateLastModified;
     </script>
     
     <!-- SEO対策 -->
