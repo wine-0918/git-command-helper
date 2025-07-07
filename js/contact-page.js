@@ -2,9 +2,6 @@
 
 // 初期化
 document.addEventListener('DOMContentLoaded', function() {
-    // EmailJS初期化
-    emailjs.init('user_xxxxxxxx'); // 実際のUser IDに置き換えてください
-    
     // 言語システム初期化
     initializeLanguage();
     

@@ -211,33 +211,15 @@
         </div>
     </div>
 
-    <!-- お問い合わせフォーム -->
-    <section class="contact-section">
-        <div class="container">
+    <!-- お問い合わせボタン -->
+    <section class="contact-navigation">
+        <div class="contact-cta">
             <h2><i class="fas fa-envelope"></i> <span data-key="contact">お問い合わせ</span></h2>
-            <p data-key="contact_description">ご質問やご要望がございましたら、お気軽にお問い合わせください。</p>
-            
-            <form id="contactForm" class="contact-form">
-                <div class="form-group">
-                    <label for="user_name" data-key="name">お名前 *</label>
-                    <input type="text" id="user_name" name="user_name" required placeholder="お名前を入力してください">
-                </div>
-                
-                <div class="form-group">
-                    <label for="user_email" data-key="email">メールアドレス *</label>
-                    <input type="email" id="user_email" name="user_email" required placeholder="メールアドレスを入力してください">
-                </div>
-                
-                <div class="form-group">
-                    <label for="message" data-key="message">メッセージ *</label>
-                    <textarea id="message" name="message" required rows="5" placeholder="お問い合わせ内容を入力してください"></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i>
-                    <span data-key="send">送信</span>
-                </button>
-            </form>
+            <p data-key="contact_cta_description">ご質問やご要望がございましたら、お気軽にお問い合わせください。</p>
+            <a href="html/contact.html" class="btn btn-primary contact-btn">
+                <i class="fas fa-envelope"></i>
+                <span data-key="contact_form">お問い合わせフォーム</span>
+            </a>
         </div>
     </section>
 
@@ -254,9 +236,6 @@
         <p id="lastUpdated">最終更新日:7/8 </p>
     </footer>
 
-    <!-- EmailJS ライブラリ -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
     <!-- カスタムスクリプト -->
     <script src="js/seo.js"></script>
     <script src="js/background.js"></script>
@@ -266,7 +245,6 @@
     <script src="js/main.js"></script>
     <script src="js/ui-render.js"></script>
     <script src="js/commands.js"></script>
-    <script src="js/contact.js"></script>
 </body>
 
 </html>
