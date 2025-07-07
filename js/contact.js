@@ -1,6 +1,6 @@
 // EmailJS初期化とお問い合わせフォーム機能
 (function () {
-    // EmailJS初期化 (バージョン2対応)
+    // EmailJS初期化
     emailjs.init("JrulMP-Mi8egamGmO");
 
     // DOM読み込み完了後に実行
@@ -8,125 +8,76 @@
         // フォーム送信処理
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
-            contactForm.addEventListener('submit', handleFormSubmit);
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // 送信ボタンを無効化
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+
+                // フォームデータを取得
+                const templateParams = {
+                    user_name: this.user_name.value,
+                    user_email: this.user_email.value,
+                    message: this.message.value
+                };
+
+                // お問い合わせメール送信
+                emailjs.send('service_5psbqcp', 'template_5459usq', templateParams)
+                    .then(function(response) {
+                        console.log('お問い合わせメール送信成功:', response);
+                        
+                        // 自動返信メール送信
+                        return emailjs.send('service_5psbqcp', 'template_4wiqzmg', {
+                            to_email: templateParams.user_email,
+                            to_name: templateParams.user_name,
+                            user_message: templateParams.message,
+                            reply_to: 'yuto.imata.wine@gmail.com',
+                            submit_time: new Date().toLocaleString('ja-JP')
+                        });
+                    })
+                    .then(function(response) {
+                        console.log('自動返信メール送信成功:', response);
+                        
+                        // 成功時の処理
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> 送信完了';
+                        submitBtn.style.backgroundColor = '#28a745';
+
+                        // 通知を表示
+                        showNotification('お問い合わせを送信しました！確認メールもお送りしました。');
+
+                        // フォームをリセット
+                        contactForm.reset();
+
+                        // 3秒後にボタンを元に戻す
+                        setTimeout(function() {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.backgroundColor = '';
+                        }, 3000);
+                    })
+                    .catch(function(error) {
+                        console.error('送信エラー:', error);
+                        
+                        // エラー時の処理
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 再送信';
+                        submitBtn.style.backgroundColor = '#dc3545';
+
+                        // エラー通知を表示
+                        showNotification('お問い合わせの送信に失敗しました。しばらく経ってから再度お試しください。', 'error');
+
+                        // 3秒後にボタンを元に戻す
+                        setTimeout(function() {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.backgroundColor = '';
+                        }, 3000);
+                    });
+            });
         }
     });
-
-    // フォーム送信処理
-    function handleFormSubmit(e) {
-        e.preventDefault();
-
-        // 現在の言語データを取得
-        const langData = window.getCurrentLanguageData ? window.getCurrentLanguageData() : null;
-
-        // 送信ボタンを無効化
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.disabled = true;
-        
-        const sendingText = langData && langData.sending ? langData.sending : '送信中...';
-        submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${sendingText}`;
-
-        // フォームデータを取得
-        const formData = {
-            user_name: this.user_name.value,
-            user_email: this.user_email.value,
-            message: this.message.value
-        };
-
-        // お問い合わせメール送信
-        console.log('お問い合わせメール送信開始');
-        
-        // 直接データを送信する方法に変更
-        emailjs.send('service_5psbqcp', 'template_5459usq', {
-            user_name: formData.user_name,
-            user_email: formData.user_email,
-            message: formData.message
-        })
-            .then(() => {
-                console.log('お問い合わせメール送信成功');
-                
-                // 自動返信メール送信
-                console.log('自動返信メール送信開始:', {
-                    to_email: formData.user_email,
-                    to_name: formData.user_name,
-                    user_message: formData.message,
-                    reply_to: 'yuto.imata.wine@gmail.com',
-                    submit_time: new Date().toLocaleString('ja-JP', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    })
-                });
-                
-                return emailjs.send('service_5psbqcp', 'template_4wiqzmg', {
-                    to_email: formData.user_email,
-                    to_name: formData.user_name,
-                    user_message: formData.message,
-                    reply_to: 'yuto.imata.wine@gmail.com',
-                    submit_time: new Date().toLocaleString('ja-JP', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    })
-                });
-            })
-            .then(() => {
-                console.log('自動返信メール送信成功');
-                
-                // 成功時の処理
-                submitBtn.disabled = false;
-                const successText = langData && langData.send_success ? langData.send_success : '送信完了';
-                submitBtn.innerHTML = `<i class="fas fa-check"></i> ${successText}`;
-                submitBtn.style.backgroundColor = '#28a745';
-
-                // 通知を表示
-                const successMessage = langData && langData.contact_success ? 
-                    langData.contact_success : 'お問い合わせを送信しました！確認メールもお送りしました。';
-                showNotification(successMessage);
-
-                // フォームをリセット
-                this.reset();
-
-                // 3秒後にボタンを元に戻す
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.backgroundColor = '';
-                }, 3000);
-            })
-            .catch((error) => {
-                // エラー時の処理
-                console.error('送信エラー:', error);
-                submitBtn.disabled = false;
-                const retryText = langData && langData.retry_send ? langData.retry_send : '再送信';
-                submitBtn.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${retryText}`;
-                submitBtn.style.backgroundColor = '#dc3545';
-
-                // エラー詳細を表示
-                let errorMessage = langData && langData.contact_error ? 
-                    langData.contact_error : 'お問い合わせの送信に失敗しました。';
-                if (error.text) {
-                    console.error('エラー詳細:', error.text);
-                }
-                if (error.status) {
-                    console.error('ステータス:', error.status);
-                    errorMessage += ` (ステータス: ${error.status})`;
-                }
-                
-                // エラー通知を表示
-                showNotification(errorMessage, 'error');
-
-                // 3秒後にボタンを元に戻す
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.backgroundColor = '';
-                }, 3000);
-            });
-    }
 
     // 通知表示関数
     function showNotification(message, type = 'success') {
@@ -134,7 +85,8 @@
         const notificationText = document.getElementById('notificationText');
 
         if (!notification || !notificationText) {
-            console.warn('通知要素が見つかりません');
+            // 通知要素がない場合はアラートで代用
+            alert(message);
             return;
         }
 
@@ -150,7 +102,7 @@
 
         notification.classList.add('show');
 
-        setTimeout(() => {
+        setTimeout(function() {
             notification.classList.remove('show');
         }, 5000);
     }

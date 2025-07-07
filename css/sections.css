@@ -128,61 +128,100 @@
 .contact-section {
     background: white;
     border-radius: 12px;
-    padding: 20px;
+    padding: 30px;
     margin-bottom: 30px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .contact-section h2 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #333;
     display: flex;
     align-items: center;
     gap: 10px;
+    font-size: 1.8rem;
 }
 
-.contact-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.contact-section p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
-.contact-section input,
-.contact-section textarea {
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1rem;
-    font-family: inherit;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    resize: vertical;
+    box-sizing: border-box;
 }
 
-.contact-section input:focus,
-.contact-section textarea:focus {
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
     border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.contact-section textarea {
+.form-group textarea {
+    resize: vertical;
     min-height: 120px;
-    max-height: 300px;
+    font-family: inherit;
 }
 
-.contact-section button[type="submit"] {
-    align-self: flex-start;
-    min-width: 120px;
+.contact-form .btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    min-width: 150px;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
-.contact-section button[type="submit"]:hover {
-    background: #5a6fd8;
-    transform: translateY(-1px);
+.contact-form .btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
 }
 
-.contact-section button[type="submit"]:active {
+.contact-form .btn:active {
     transform: translateY(0);
+}
+
+.contact-form .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
 }
 
 /* お問い合わせナビゲーションセクション */
@@ -405,4 +444,72 @@ body.dark-mode .update-more-link .btn-primary {
 
 body.dark-mode .update-more-link .btn-primary:hover {
     box-shadow: 0 6px 25px rgba(74, 144, 226, 0.4);
+}
+
+body.dark-mode .contact-section {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    color: #ffffff;
+}
+
+body.dark-mode .contact-section h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .contact-section p {
+    color: #cccccc;
+}
+
+body.dark-mode .form-group label {
+    color: #ffffff;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #ffffff;
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+body.dark-mode .form-group input::placeholder,
+body.dark-mode .form-group textarea::placeholder {
+    color: #888;
+}
+
+body.dark-mode .contact-form .btn {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+body.dark-mode .contact-form .btn:hover:not(:disabled) {
+    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.4);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .contact-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .contact-form .btn {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+    }
 }
