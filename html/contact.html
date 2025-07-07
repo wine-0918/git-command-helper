@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="contact">お問い合わせ</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="nav-left">
+                    <h1>
+                        <a href="index.html" data-key="title">Git Command Helper</a>
+                    </h1>
+                    <button id="backButton" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        <span data-key="back">戻る</span>
+                    </button>
+                </div>
+                <div class="nav-right">
+                    <button id="darkModeToggle" class="icon-btn" data-tooltip-key="dark_mode_toggle" title="ダークモード切り替え">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="languageToggle" class="icon-btn" data-tooltip-key="language_toggle" title="言語切り替え">
+                        <span id="currentLang">日本語</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="contact-section">
+                <h2 data-key="contact">お問い合わせ</h2>
+                <p data-key="contact_description">ご質問やご意見がございましたら、お気軽にお問い合わせください。</p>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="userName" data-key="name_placeholder">お名前</label>
+                        <input 
+                            type="text" 
+                            id="userName" 
+                            name="user_name" 
+                            placeholder="お名前" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="userEmail" data-key="email_placeholder">メールアドレス</label>
+                        <input 
+                            type="email" 
+                            id="userEmail" 
+                            name="user_email" 
+                            placeholder="メールアドレス" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" data-key="message_placeholder">お問い合わせ内容</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="5" 
+                            placeholder="お問い合わせ内容" 
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" data-key="send">
+                        送信
+                    </button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Git Command Helper - <span data-key="footer_text">あなたの開発効率を向上させるツール</span></p>
+            <p data-key="last_updated">最終更新日: </p>
+        </div>
+    </footer>
+
+    <!-- 通知 -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/contact.js"></script>
+    
+    <script>
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // EmailJS初期化
+            emailjs.init('user_xxxxxxxx'); // 実際のUser IDに置き換えてください
+            
+            // 言語システム初期化
+            initializeLanguage();
+            
+            // ダークモード初期化
+            initializeDarkMode();
+            
+            // 戻るボタンのイベントリスナー
+            document.getElementById('backButton').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+            
+            // 最終更新日の設定
+            updateLastModified();
+        });
+
+        // ダークモード機能
+        function initializeDarkMode() {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            darkModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                
+                localStorage.setItem('darkMode', isDark);
+                this.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            });
+        }
+
+        // 最終更新日の設定
+        function updateLastModified() {
+            const lang = getCurrentLanguageData();
+            const lastUpdatedElement = document.querySelector('[data-key="last_updated"]');
+            if (lastUpdatedElement) {
+                lastUpdatedElement.textContent = lang.last_updated + '2025年7月8日';
+            }
+        }
+    </script>
+</body>
+</html>
