@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# サイトマップの場所
+Sitemap: https://your-domain.com/sitemap.xml
+
+# クロール不要なファイル（もしあれば）
+Disallow: /css/
+Disallow: /js/
+Allow: /css/
+Allow: /js/
+
+# 検索エンジンのクロール頻度制御
+Crawl-delay: 1
