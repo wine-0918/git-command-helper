@@ -227,3 +227,137 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
 }
+
+/* 更新履歴セクション */
+.update-history-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.update-history-section h2 {
+    margin-bottom: 25px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+}
+
+.update-timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.update-timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+    border-radius: 1px;
+}
+
+.update-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 25px;
+}
+
+.update-item::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: #667eea;
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.update-item:last-child {
+    margin-bottom: 0;
+}
+
+.update-date {
+    font-size: 0.9rem;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.update-date::before {
+    content: '\f073';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.8rem;
+}
+
+.update-content h3 {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.update-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.update-content li {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 6px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.update-content li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #28a745;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 0.8rem;
+}
+
+.update-content li:last-child {
+    margin-bottom: 0;
+}
+
+/* ダークモード対応 */
+body.dark-mode .update-history-section {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    color: #ffffff;
+}
+
+body.dark-mode .update-history-section h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .update-content h3 {
+    color: #ffffff;
+}
+
+body.dark-mode .update-content li {
+    color: #cccccc;
+}
+
+body.dark-mode .update-timeline::before {
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+}
