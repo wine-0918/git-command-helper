@@ -4,17 +4,22 @@
 body.dark-mode {
     background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     color: #ffffff;
+    position: relative;
+    overflow-x: hidden;
 }
 
 body.dark-mode .container {
     color: #ffffff;
+    position: relative;
+    z-index: 1;
 }
 
 /* セクション背景 */
 body.dark-mode .search-section,
 body.dark-mode .custom-command-section,
 body.dark-mode .recent-section,
-body.dark-mode .contact-section {
+body.dark-mode .contact-section,
+body.dark-mode .contact-navigation {
     background: #1e1e1e;
     border: 1px solid #333;
     color: #ffffff;

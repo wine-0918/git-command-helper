@@ -4,7 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git Command Helper</title>
+    
+    <!-- SEO基本メタタグ -->
+    <title>Git Command Helper - よく使うGitコマンドを素早くコピー | 開発効率向上ツール</title>
+    <meta name="description" content="Git Command Helperは、よく使うGitコマンドを素早くコピーできる無料の開発支援ツールです。ブランチ操作、コミット、リモート管理など100以上のGitコマンドを網羅。カスタムコマンド登録機能付き。">
+    <meta name="keywords" content="Git,コマンド,開発,プログラミング,バージョン管理,GitHub,開発効率,ツール,無料,ブランチ,コミット,リモート">
+    <meta name="author" content="Git Command Helper">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="ja">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Git Command Helper - よく使うGitコマンドを素早くコピー">
+    <meta property="og:description" content="Git Command Helperは、よく使うGitコマンドを素早くコピーできる無料の開発支援ツールです。ブランチ操作、コミット、リモート管理など100以上のGitコマンドを網羅。">
+    <meta property="og:image" content="https://your-domain.com/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Git Command Helper">
+    <meta property="og:locale" content="ja_JP">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://your-domain.com/">
+    <meta name="twitter:title" content="Git Command Helper - よく使うGitコマンドを素早くコピー">
+    <meta name="twitter:description" content="Git Command Helperは、よく使うGitコマンドを素早くコピーできる無料の開発支援ツールです。">
+    <meta name="twitter:image" content="https://your-domain.com/images/twitter-card.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-domain.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/sections.css">
@@ -12,6 +49,41 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/dark-mode.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- 構造化データ（JSON-LD） -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Git Command Helper",
+        "description": "よく使うGitコマンドを素早くコピーできる無料の開発支援ツール",
+        "url": "https://your-domain.com/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "JPY"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "Git Command Helper"
+        },
+        "keywords": ["Git", "コマンド", "開発", "プログラミング", "バージョン管理"],
+        "inLanguage": ["ja", "en", "zh"],
+        "featureList": [
+            "100以上のGitコマンド収録",
+            "ワンクリックコピー機能",
+            "カテゴリ別フィルター",
+            "カスタムコマンド登録",
+            "多言語対応（日本語・英語・中国語）",
+            "ダークモード対応",
+            "モバイル対応"
+        ]
+    }
+    </script>
+    
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3418982916205910"
         crossorigin="anonymous"></script>
 </head>
@@ -30,6 +102,11 @@
             </div>
             <h1><i class="fab fa-git-alt"></i> <span data-key="title">Git Command Helper</span></h1>
             <p data-key="subtitle">よく使うGitコマンドを素早くコピーしよう</p>
+            
+            <!-- SEO強化用の説明文 -->
+            <div class="hero-description" style="margin-top: 15px; font-size: 0.95rem; color: rgba(255,255,255,0.9); text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Git開発を効率化する無料ツール。ブランチ操作、コミット、リモート管理など100以上のコマンドをワンクリックでコピー。
+            </div>
         </header>
 
         <div class="search-section">
@@ -41,12 +118,15 @@
             <!-- デスクトップ用フィルターボタン -->
             <div class="filter-buttons desktop-filters">
                 <button class="filter-btn active" data-category="all" data-key="all">すべて</button>
+                <button class="filter-btn" data-category="basic" data-key="basic">基本</button>
                 <button class="filter-btn" data-category="branch" data-key="branch">ブランチ</button>
                 <button class="filter-btn" data-category="commit" data-key="commit">コミット</button>
                 <button class="filter-btn" data-category="reset" data-key="reset">リセット</button>
                 <button class="filter-btn" data-category="remote" data-key="remote">リモート</button>
                 <button class="filter-btn" data-category="log" data-key="log">ログ</button>
                 <button class="filter-btn" data-category="stash" data-key="stash">スタッシュ</button>
+                <button class="filter-btn" data-category="config" data-key="config">設定</button>
+                <button class="filter-btn" data-category="troubleshoot" data-key="troubleshoot">トラブルシュート</button>
             </div>
 
             <!-- モバイル用ハンバーガーメニュー -->
@@ -58,12 +138,15 @@
                 </button>
                 <div class="mobile-filter-menu" id="mobileFilterMenu">
                     <button class="mobile-filter-btn active" data-category="all" data-key="all">すべて</button>
+                    <button class="mobile-filter-btn" data-category="basic" data-key="basic">基本</button>
                     <button class="mobile-filter-btn" data-category="branch" data-key="branch">ブランチ</button>
                     <button class="mobile-filter-btn" data-category="commit" data-key="commit">コミット</button>
                     <button class="mobile-filter-btn" data-category="reset" data-key="reset">リセット</button>
                     <button class="mobile-filter-btn" data-category="remote" data-key="remote">リモート</button>
                     <button class="mobile-filter-btn" data-category="log" data-key="log">ログ</button>
                     <button class="mobile-filter-btn" data-category="stash" data-key="stash">スタッシュ</button>
+                    <button class="mobile-filter-btn" data-category="config" data-key="config">設定</button>
+                    <button class="mobile-filter-btn" data-category="troubleshoot" data-key="troubleshoot">トラブルシュート</button>
                 </div>
             </div>
         </div>
@@ -120,15 +203,16 @@
         </div>
     </div>
 
-    <!-- お問い合わせフォーム -->
-    <section class="contact-section">
-        <h2><i class="fas fa-envelope"></i> <span data-key="contact">お問い合わせ</span></h2>
-        <form id="contactForm">
-            <input type="text" name="user_name" placeholder="お名前" required />
-            <input type="email" name="user_email" placeholder="メールアドレス" required />
-            <textarea name="message" placeholder="お問い合わせ内容" required></textarea>
-            <button type="submit" class="btn-primary" data-key="send">送信</button>
-        </form>
+    <!-- お問い合わせボタン -->
+    <section class="contact-navigation">
+        <div class="contact-cta">
+            <h2><i class="fas fa-envelope"></i> <span data-key="contact">お問い合わせ</span></h2>
+            <p data-key="contact_cta_description">ご質問やご要望がございましたら、お気軽にお問い合わせください。</p>
+            <a href="contact.html" class="btn btn-primary contact-btn">
+                <i class="fas fa-envelope"></i>
+                <span data-key="contact_form">お問い合わせフォーム</span>
+            </a>
+        </div>
     </section>
 
 
@@ -144,16 +228,14 @@
         <p id="lastUpdated">最終更新日: </p>
     </footer>
 
-    <!-- EmailJS ライブラリの読み込み -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
     <!-- カスタムスクリプト -->
+    <script src="js/seo.js"></script>
+    <script src="js/background.js"></script>
     <script src="js/language.js"></script>
     <script src="js/git-commands.js"></script>
     <script src="js/main.js"></script>
     <script src="js/ui-render.js"></script>
     <script src="js/commands.js"></script>
-    <script src="js/contact.js"></script>
 </body>
 
 </html>

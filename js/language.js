@@ -9,12 +9,15 @@ const languages = {
             subtitle: 'よく使うGitコマンドを素早くコピーしよう',
             search_placeholder: 'コマンドを検索...',
             all: 'すべて',
+            basic: '基本',
             branch: 'ブランチ',
             commit: 'コミット',
             reset: 'リセット',
             remote: 'リモート',
             log: 'ログ',
             stash: 'スタッシュ',
+            config: '設定',
+            troubleshoot: 'トラブルシュート',
             custom_command: 'カスタムコマンド',
             custom_command_placeholder: 'カスタムコマンドを入力...',
             custom_description_placeholder: '説明を入力...',
@@ -26,6 +29,9 @@ const languages = {
             cancel: 'キャンセル',
             copy: 'コピー',
             contact: 'お問い合わせ',
+            contact_cta_description: 'ご質問やご要望がございましたら、お気軽にお問い合わせください。',
+            contact_form: 'お問い合わせフォーム',
+            hero_description: 'Git開発を効率化する無料ツール。ブランチ操作、コミット、リモート管理など100以上のコマンドをワンクリックでコピー。',
             name_placeholder: 'お名前',
             email_placeholder: 'メールアドレス',
             message_placeholder: 'お問い合わせ内容',
@@ -51,6 +57,125 @@ const languages = {
             delete_confirm: 'このカスタムコマンドを削除しますか？',
             // Git コマンドの説明
             commands: {
+                // 基本コマンド
+                'git init': {
+                    title: 'リポジトリを初期化',
+                    description: '新しいGitリポジトリを初期化します'
+                },
+                'git clone {repository_url}': {
+                    title: 'リポジトリをクローン',
+                    description: 'リモートリポジトリをローカルにクローンします'
+                },
+                'git add .': {
+                    title: '全ての変更をステージング',
+                    description: 'すべての変更をステージングエリアに追加します'
+                },
+                'git add {file_name}': {
+                    title: '特定ファイルをステージング',
+                    description: '特定のファイルをステージングエリアに追加します'
+                },
+                'git status': {
+                    title: '現在の状態を確認',
+                    description: '現在のワーキングディレクトリの状態を表示します'
+                },
+                'git commit -m "{message}"': {
+                    title: '変更をコミット',
+                    description: 'ステージングされた変更をコミットします'
+                },
+                'git diff': {
+                    title: '変更を比較',
+                    description: 'ワーキングディレクトリとステージングエリアの差分を表示します'
+                },
+                'git diff {file_name}': {
+                    title: '特定ファイルの変更を比較',
+                    description: '特定ファイルの変更差分を表示します'
+                },
+                'git pull': {
+                    title: 'リモートから最新を取得',
+                    description: 'リモートから最新の変更を取得してマージします'
+                },
+                'git push': {
+                    title: 'リモートにプッシュ',
+                    description: 'ローカルの変更をリモートリポジトリにプッシュします'
+                },
+                'git push origin {branch_name}': {
+                    title: '特定ブランチをプッシュ',
+                    description: '特定のブランチをリモートにプッシュします'
+                },
+                'git fetch': {
+                    title: 'リモート情報を取得',
+                    description: 'リモートから最新の情報を取得します（マージはしません）'
+                },
+                'git merge {branch_name}': {
+                    title: 'ブランチをマージ',
+                    description: '指定したブランチを現在のブランチにマージします'
+                },
+                'git rebase {branch_name}': {
+                    title: 'ブランチをリベース',
+                    description: '現在のブランチを指定ブランチの上にリベースします'
+                },
+                'git checkout {branch_name}': {
+                    title: 'ブランチを切り替え',
+                    description: '指定したブランチに切り替えます'
+                },
+                'git checkout {commit_hash}': {
+                    title: '特定コミットにチェックアウト',
+                    description: '特定のコミットにチェックアウトします'
+                },
+                'git tag {tag_name}': {
+                    title: 'タグを作成',
+                    description: '現在のコミットにタグを作成します'
+                },
+                'git tag -a {tag_name} -m "{message}"': {
+                    title: '注釈付きタグを作成',
+                    description: '注釈付きタグを作成します'
+                },
+                
+                // 設定コマンド
+                'git config --global user.name "{name}"': {
+                    title: 'ユーザー名を設定',
+                    description: 'Gitで使用するユーザー名をグローバルに設定します'
+                },
+                'git config --global user.email "{email}"': {
+                    title: 'メールアドレスを設定',
+                    description: 'Gitで使用するメールアドレスをグローバルに設定します'
+                },
+                'git config --list': {
+                    title: '設定一覧を表示',
+                    description: '現在のGit設定をすべて表示します'
+                },
+                'git config --global core.editor "{editor}"': {
+                    title: 'デフォルトエディタを設定',
+                    description: 'Gitで使用するデフォルトエディタを設定します'
+                },
+                'git config --global init.defaultBranch {branch_name}': {
+                    title: 'デフォルトブランチ名を設定',
+                    description: '新しいリポジトリのデフォルトブランチ名を設定します'
+                },
+                
+                // トラブルシュートコマンド
+                'git revert {commit_hash}': {
+                    title: '特定のコミットを打ち消し',
+                    description: '指定したコミットの変更を打ち消すコミットを作成します'
+                },
+                'git revert HEAD': {
+                    title: '直前のコミットを打ち消し',
+                    description: '直前のコミットを打ち消すコミットを作成します'
+                },
+                'git blame {file_name}': {
+                    title: 'ファイルの変更履歴を行別で表示',
+                    description: 'ファイルの各行がいつ誰によって変更されたかを表示します'
+                },
+                'git show {commit_hash}': {
+                    title: '特定のコミットの詳細を表示',
+                    description: '指定したコミットの詳細情報を表示します'
+                },
+                'git reflog': {
+                    title: '操作履歴を表示',
+                    description: 'HEADの移動履歴を表示します（削除されたコミットも含む）'
+                },
+                
+                // ブランチコマンド
                 'git checkout -b {branch_name}': {
                     title: '新しいブランチを作成して切り替え',
                     description: '新しいブランチを作成して、そのブランチに切り替えます'
@@ -165,12 +290,15 @@ const languages = {
             subtitle: 'Quickly copy commonly used Git commands',
             search_placeholder: 'Search commands...',
             all: 'All',
+            basic: 'Basic',
             branch: 'Branch',
             commit: 'Commit',
             reset: 'Reset',
             remote: 'Remote',
             log: 'Log',
             stash: 'Stash',
+            config: 'Config',
+            troubleshoot: 'Troubleshoot',
             custom_command: 'Custom Command',
             custom_command_placeholder: 'Enter custom command...',
             custom_description_placeholder: 'Enter description...',
@@ -182,6 +310,9 @@ const languages = {
             cancel: 'Cancel',
             copy: 'Copy',
             contact: 'Contact',
+            contact_cta_description: 'If you have any questions or requests, please feel free to contact us.',
+            contact_form: 'Contact Form',
+            hero_description: 'Free tool to enhance Git development efficiency. Copy 100+ commands including branch operations, commits, and remote management with one click.',
             name_placeholder: 'Name',
             email_placeholder: 'Email Address',
             message_placeholder: 'Message',
@@ -206,6 +337,125 @@ const languages = {
             custom_command_deleted: 'Custom command deleted',
             delete_confirm: 'Are you sure you want to delete this custom command?',
             commands: {
+                // Basic commands
+                'git init': {
+                    title: 'Initialize repository',
+                    description: 'Initialize a new Git repository'
+                },
+                'git clone {repository_url}': {
+                    title: 'Clone repository',
+                    description: 'Clone a remote repository to local'
+                },
+                'git add .': {
+                    title: 'Stage all changes',
+                    description: 'Add all changes to staging area'
+                },
+                'git add {file_name}': {
+                    title: 'Stage specific file',
+                    description: 'Add specific file to staging area'
+                },
+                'git status': {
+                    title: 'Check current status',
+                    description: 'Show the current working directory status'
+                },
+                'git commit -m "{message}"': {
+                    title: 'Commit changes',
+                    description: 'Commit staged changes'
+                },
+                'git diff': {
+                    title: 'Compare changes',
+                    description: 'Show differences between working directory and staging area'
+                },
+                'git diff {file_name}': {
+                    title: 'Compare specific file changes',
+                    description: 'Show differences of specific file'
+                },
+                'git pull': {
+                    title: 'Pull from remote',
+                    description: 'Fetch and merge latest changes from remote'
+                },
+                'git push': {
+                    title: 'Push to remote',
+                    description: 'Push local changes to remote repository'
+                },
+                'git push origin {branch_name}': {
+                    title: 'Push specific branch',
+                    description: 'Push specific branch to remote'
+                },
+                'git fetch': {
+                    title: 'Fetch remote info',
+                    description: 'Fetch latest info from remote (without merging)'
+                },
+                'git merge {branch_name}': {
+                    title: 'Merge branch',
+                    description: 'Merge specified branch into current branch'
+                },
+                'git rebase {branch_name}': {
+                    title: 'Rebase branch',
+                    description: 'Rebase current branch onto specified branch'
+                },
+                'git checkout {branch_name}': {
+                    title: 'Switch branch',
+                    description: 'Switch to specified branch'
+                },
+                'git checkout {commit_hash}': {
+                    title: 'Checkout specific commit',
+                    description: 'Checkout to specific commit'
+                },
+                'git tag {tag_name}': {
+                    title: 'Create tag',
+                    description: 'Create tag at current commit'
+                },
+                'git tag -a {tag_name} -m "{message}"': {
+                    title: 'Create annotated tag',
+                    description: 'Create annotated tag'
+                },
+                
+                // Config commands
+                'git config --global user.name "{name}"': {
+                    title: 'Set user name',
+                    description: 'Set global user name for Git'
+                },
+                'git config --global user.email "{email}"': {
+                    title: 'Set email address',
+                    description: 'Set global email address for Git'
+                },
+                'git config --list': {
+                    title: 'Show configuration',
+                    description: 'Display all current Git configuration'
+                },
+                'git config --global core.editor "{editor}"': {
+                    title: 'Set default editor',
+                    description: 'Set default editor for Git'
+                },
+                'git config --global init.defaultBranch {branch_name}': {
+                    title: 'Set default branch name',
+                    description: 'Set default branch name for new repositories'
+                },
+                
+                // Troubleshoot commands
+                'git revert {commit_hash}': {
+                    title: 'Revert specific commit',
+                    description: 'Create commit that reverses specified commit'
+                },
+                'git revert HEAD': {
+                    title: 'Revert last commit',
+                    description: 'Create commit that reverses last commit'
+                },
+                'git blame {file_name}': {
+                    title: 'Show file change history by line',
+                    description: 'Show who and when each line of file was changed'
+                },
+                'git show {commit_hash}': {
+                    title: 'Show commit details',
+                    description: 'Display detailed information of specified commit'
+                },
+                'git reflog': {
+                    title: 'Show operation history',
+                    description: 'Show HEAD movement history (including deleted commits)'
+                },
+                
+                // Branch commands
                 'git checkout -b {branch_name}': {
                     title: 'Create and switch to new branch',
                     description: 'Create a new branch and switch to it'
@@ -320,12 +570,15 @@ const languages = {
             subtitle: '快速复制常用的Git命令',
             search_placeholder: '搜索命令...',
             all: '全部',
+            basic: '基础',
             branch: '分支',
             commit: '提交',
             reset: '重置',
             remote: '远程',
             log: '日志',
             stash: '暂存',
+            config: '配置',
+            troubleshoot: '故障排除',
             custom_command: '自定义命令',
             custom_command_placeholder: '输入自定义命令...',
             custom_description_placeholder: '输入描述...',
@@ -337,6 +590,9 @@ const languages = {
             cancel: '取消',
             copy: '复制',
             contact: '联系我们',
+            contact_cta_description: '如果您有任何问题或建议，请随时联系我们。',
+            contact_form: '联系表单',
+            hero_description: '提高Git开发效率的免费工具。一键复制包括分支操作、提交、远程管理等100多个命令。',
             name_placeholder: '姓名',
             email_placeholder: '邮箱地址',
             message_placeholder: '消息内容',
@@ -361,6 +617,125 @@ const languages = {
             custom_command_deleted: '自定义命令已删除',
             delete_confirm: '您确定要删除这个自定义命令吗？',
             commands: {
+                // 基础命令
+                'git init': {
+                    title: '初始化仓库',
+                    description: '初始化一个新的Git仓库'
+                },
+                'git clone {repository_url}': {
+                    title: '克隆仓库',
+                    description: '将远程仓库克隆到本地'
+                },
+                'git add .': {
+                    title: '暂存所有更改',
+                    description: '将所有更改添加到暂存区'
+                },
+                'git add {file_name}': {
+                    title: '暂存特定文件',
+                    description: '将特定文件添加到暂存区'
+                },
+                'git status': {
+                    title: '检查当前状态',
+                    description: '显示当前工作目录的状态'
+                },
+                'git commit -m "{message}"': {
+                    title: '提交更改',
+                    description: '提交暂存的更改'
+                },
+                'git diff': {
+                    title: '比较更改',
+                    description: '显示工作目录和暂存区之间的差异'
+                },
+                'git diff {file_name}': {
+                    title: '比较特定文件的更改',
+                    description: '显示特定文件的更改差异'
+                },
+                'git pull': {
+                    title: '从远程拉取',
+                    description: '从远程获取并合并最新更改'
+                },
+                'git push': {
+                    title: '推送到远程',
+                    description: '将本地更改推送到远程仓库'
+                },
+                'git push origin {branch_name}': {
+                    title: '推送特定分支',
+                    description: '将特定分支推送到远程'
+                },
+                'git fetch': {
+                    title: '获取远程信息',
+                    description: '从远程获取最新信息（不合并）'
+                },
+                'git merge {branch_name}': {
+                    title: '合并分支',
+                    description: '将指定分支合并到当前分支'
+                },
+                'git rebase {branch_name}': {
+                    title: '变基分支',
+                    description: '将当前分支变基到指定分支上'
+                },
+                'git checkout {branch_name}': {
+                    title: '切换分支',
+                    description: '切换到指定分支'
+                },
+                'git checkout {commit_hash}': {
+                    title: '检出特定提交',
+                    description: '检出到特定提交'
+                },
+                'git tag {tag_name}': {
+                    title: '创建标签',
+                    description: '在当前提交创建标签'
+                },
+                'git tag -a {tag_name} -m "{message}"': {
+                    title: '创建注释标签',
+                    description: '创建注释标签'
+                },
+                
+                // 配置命令
+                'git config --global user.name "{name}"': {
+                    title: '设置用户名',
+                    description: '设置Git的全局用户名'
+                },
+                'git config --global user.email "{email}"': {
+                    title: '设置邮箱地址',
+                    description: '设置Git的全局邮箱地址'
+                },
+                'git config --list': {
+                    title: '显示配置',
+                    description: '显示所有当前Git配置'
+                },
+                'git config --global core.editor "{editor}"': {
+                    title: '设置默认编辑器',
+                    description: '设置Git的默认编辑器'
+                },
+                'git config --global init.defaultBranch {branch_name}': {
+                    title: '设置默认分支名',
+                    description: '设置新仓库的默认分支名'
+                },
+                
+                // 故障排除命令
+                'git revert {commit_hash}': {
+                    title: '撤销特定提交',
+                    description: '创建撤销指定提交的新提交'
+                },
+                'git revert HEAD': {
+                    title: '撤销最后提交',
+                    description: '创建撤销最后提交的新提交'
+                },
+                'git blame {file_name}': {
+                    title: '按行显示文件更改历史',
+                    description: '显示文件每行是何时被谁更改的'
+                },
+                'git show {commit_hash}': {
+                    title: '显示提交详情',
+                    description: '显示指定提交的详细信息'
+                },
+                'git reflog': {
+                    title: '显示操作历史',
+                    description: '显示HEAD移动历史（包括已删除的提交）'
+                },
+                
+                // 分支命令
                 'git checkout -b {branch_name}': {
                     title: '创建并切换到新分支',
                     description: '创建一个新分支并切换到该分支'
@@ -575,6 +950,12 @@ function updateUI() {
     const sendButton = document.querySelector('#contactForm button[type="submit"]');
     if (sendButton) {
         sendButton.textContent = lang.send;
+    }
+    
+    // ヒーロー説明文の更新
+    const heroDescription = document.querySelector('.hero-description');
+    if (heroDescription && lang.hero_description) {
+        heroDescription.textContent = lang.hero_description;
     }
     
     // 最終更新日
