@@ -1,9 +1,7 @@
 // EmailJS初期化とお問い合わせフォーム機能
 (function () {
-    // EmailJS初期化
-    emailjs.init({
-        publicKey: "JrulMP-Mi8egamGmO"
-    });
+    // EmailJS初期化 (バージョン2対応)
+    emailjs.init("JrulMP-Mi8egamGmO");
 
     // DOM読み込み完了後に実行
     document.addEventListener('DOMContentLoaded', function() {
@@ -38,7 +36,13 @@
 
         // お問い合わせメール送信
         console.log('お問い合わせメール送信開始');
-        emailjs.sendForm('service_5psbqcp', 'template_5459usq', this)
+        
+        // 直接データを送信する方法に変更
+        emailjs.send('service_5psbqcp', 'template_5459usq', {
+            user_name: formData.user_name,
+            user_email: formData.user_email,
+            message: formData.message
+        })
             .then(() => {
                 console.log('お問い合わせメール送信成功');
                 
