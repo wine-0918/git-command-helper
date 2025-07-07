@@ -339,6 +339,38 @@
     margin-bottom: 0;
 }
 
+/* 「もっと見る」リンクスタイル */
+.update-more-link {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.update-more-link .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.update-more-link .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+}
+
+.update-more-link .btn-primary:active {
+    transform: translateY(0);
+}
+
 /* ダークモード対応 */
 body.dark-mode .update-history-section {
     background: #1e1e1e;
@@ -360,4 +392,17 @@ body.dark-mode .update-content li {
 
 body.dark-mode .update-timeline::before {
     background: linear-gradient(to bottom, #667eea, #764ba2);
+}
+
+body.dark-mode .update-more-link {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .update-more-link .btn-primary {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+body.dark-mode .update-more-link .btn-primary:hover {
+    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.4);
 }

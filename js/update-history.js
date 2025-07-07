@@ -138,9 +138,64 @@ const updateHistory = [
     }
 ];
 
-// 更新履歴を動的に生成する関数
+// 更新履歴を動的に生成する関数（サマリー表示：最新3件）
 function generateUpdateHistory() {
     const container = document.querySelector('.update-timeline');
+    if (!container) return;
+
+    const currentLang = window.currentLanguage || 'ja';
+    container.innerHTML = '';
+
+    // 最新3件のみ表示
+    const recentUpdates = updateHistory.slice(0, 3);
+
+    recentUpdates.forEach(update => {
+        const updateItem = document.createElement('div');
+        updateItem.className = 'update-item';
+
+        const dateDiv = document.createElement('div');
+        dateDiv.className = 'update-date';
+        dateDiv.textContent = update.date;
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'update-content';
+
+        const titleH3 = document.createElement('h3');
+        titleH3.textContent = update.title[currentLang] || update.title.ja;
+
+        const itemsList = document.createElement('ul');
+        update.items.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item[currentLang] || item.ja;
+            itemsList.appendChild(li);
+        });
+
+        contentDiv.appendChild(titleH3);
+        contentDiv.appendChild(itemsList);
+
+        updateItem.appendChild(dateDiv);
+        updateItem.appendChild(contentDiv);
+
+        container.appendChild(updateItem);
+    });
+
+    // 「もっと見る」リンクを追加（index.htmlでのみ）
+    if (document.querySelector('.update-history-section')) {
+        const moreLink = document.createElement('div');
+        moreLink.className = 'update-more-link';
+        moreLink.innerHTML = `
+            <a href="update-history.html" class="btn-primary">
+                <i class="fas fa-history"></i>
+                <span data-key="view_all_updates">すべての更新履歴を見る</span>
+            </a>
+        `;
+        container.appendChild(moreLink);
+    }
+}
+
+// 詳細な更新履歴を生成する関数（全件表示）
+function renderFullUpdateHistory() {
+    const container = document.querySelector('#fullUpdateTimeline');
     if (!container) return;
 
     const currentLang = window.currentLanguage || 'ja';
@@ -204,3 +259,4 @@ document.addEventListener('DOMContentLoaded', () => {
 window.updateHistory = updateHistory;
 window.addUpdateEntry = addUpdateEntry;
 window.generateUpdateHistory = generateUpdateHistory;
+window.renderFullUpdateHistory = renderFullUpdateHistory;

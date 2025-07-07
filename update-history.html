@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO基本メタタグ -->
+    <title>Webページ更新履歴 - Git Command Helper | 開発進捗・変更ログ</title>
+    <meta name="description" content="Git Command Helperの詳細な更新履歴・変更ログ。機能追加、バグ修正、UI改善などの開発進捗をご確認いただけます。">
+    <meta name="keywords" content="Git Command Helper,更新履歴,変更ログ,バージョン履歴,アップデート,機能追加">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/update-history.html">
+    <meta property="og:title" content="Webページ更新履歴 - Git Command Helper">
+    <meta property="og:description" content="Git Command Helperの詳細な更新履歴・変更ログをご確認いただけます。">
+    <meta property="og:site_name" content="Git Command Helper">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-domain.com/update-history.html">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- update-history.html専用スタイル -->
+    <style>
+        /* ヘッダーレイアウト調整 */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        header h1 i {
+            color: white;
+        }
+        
+        header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .nav-actions {
+            margin-top: 20px;
+        }
+        
+        /* 更新履歴専用スタイル */
+        .full-update-history-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .full-update-history-section h2 {
+            color: white;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .update-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .update-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #4CAF50, #2196F3);
+        }
+        
+        .update-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin-left: 20px;
+            border-left: 3px solid #4CAF50;
+        }
+        
+        .update-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: #4CAF50;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+        
+        .update-date {
+            color: #4CAF50;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .update-content h3 {
+            color: white;
+            margin: 0 0 15px 0;
+            font-size: 1.3rem;
+        }
+        
+        .update-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .update-content li {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .update-content li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-size: 0.8rem;
+        }
+        
+        /* ダークモード対応 */
+        body.dark-mode .full-update-history-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        body.dark-mode .update-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-left-color: #2196F3;
+        }
+        
+        body.dark-mode .update-item::before {
+            background: #2196F3;
+            border-color: #1a1a1a;
+        }
+        
+        body.dark-mode .update-date {
+            color: #2196F3;
+        }
+        
+        /* フッタースタイル調整 */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+        }
+        
+        footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        /* ダークモード対応 */
+        body.dark-mode footer {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .update-timeline {
+                padding-left: 20px;
+            }
+            
+            .update-item {
+                margin-left: 10px;
+                padding: 15px;
+            }
+            
+            .update-item::before {
+                left: -25px;
+                width: 8px;
+                height: 8px;
+            }
+            
+            .update-timeline::before {
+                left: 10px;
+            }
+            
+            .full-update-history-section {
+                padding: 20px;
+            }
+        }
+    </style>
+    
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Webページ更新履歴 - Git Command Helper",
+        "description": "Git Command Helperの詳細な更新履歴・変更ログ",
+        "url": "https://your-domain.com/update-history.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Git Command Helper",
+            "url": "https://your-domain.com/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-controls">
+                <button id="darkModeToggle" class="control-btn" title="ダークモード切り替え" data-tooltip-key="dark_mode_toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageToggle" class="control-btn" title="言語切り替え" data-tooltip-key="language_toggle">
+                    <i class="fas fa-language"></i>
+                    <span id="currentLang">日本語</span>
+                </button>
+            </div>
+            <h1><i class="fab fa-git-alt"></i> <span data-key="title">Git Command Helper</span></h1>
+            <p data-key="update_history_subtitle">詳細な更新履歴・変更ログ</p>
+            <div class="nav-actions">
+                <button id="backButton" class="btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-key="back">戻る</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- 詳細な更新履歴セクション -->
+            <div class="full-update-history-section">
+                <h2><i class="fas fa-history"></i> <span data-key="update_history">Webページ更新履歴</span></h2>
+                <div class="update-timeline" id="fullUpdateTimeline">
+                    <!-- 更新履歴は JavaScript で動的に生成 -->
+                </div>
+            </div>
+        </main>
+
+        <!-- 通知 -->
+        <div class="notification" id="notification">
+            <i class="fas fa-check-circle"></i>
+            <span id="notificationText" data-key="copied">コピーしました！</span>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Git Command Helper - あなたの開発効率を向上させるツール</p>
+            <p><a href="html/privacy.html" data-key="privacy_policy">プライバシーポリシー</a></p>
+            <p id="lastUpdated">最終更新日: 2025年7月8日</p>
+        </footer>
+    </div>
+
+    <!-- カスタムスクリプト -->
+    <script src="js/seo.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/update-history.js"></script>
+    <script>
+        // ページ初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 言語とダークモードの初期化
+            initializeLanguage();
+            initializeDarkMode();
+            
+            // 背景アニメーション初期化
+            initBackground();
+            
+            // 詳細な更新履歴の表示
+            if (typeof renderFullUpdateHistory === 'function') {
+                renderFullUpdateHistory();
+            }
+            
+            // 戻るボタンのイベントリスナー
+            document.getElementById('backButton').addEventListener('click', function() {
+                window.history.back();
+            });
+            
+            // ダークモードトグル
+            document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+            
+            // 言語切り替え
+            document.getElementById('languageToggle').addEventListener('click', switchLanguage);
+        });
+        
+        // 言語切り替え関数
+        function switchLanguage() {
+            const currentLang = localStorage.getItem('language') || 'ja';
+            const languages = ['ja', 'en', 'zh'];
+            const currentIndex = languages.indexOf(currentLang);
+            const nextIndex = (currentIndex + 1) % languages.length;
+            const nextLang = languages[nextIndex];
+            
+            // グローバル言語変数を更新
+            window.currentLanguage = nextLang;
+            localStorage.setItem('language', nextLang);
+            
+            // 言語表示を更新
+            const langNames = { ja: '日本語', en: 'English', zh: '中文' };
+            document.getElementById('currentLang').textContent = langNames[nextLang];
+            
+            // 言語UI要素を更新
+            if (typeof window.switchLanguage === 'function') {
+                window.switchLanguage(nextLang);
+            }
+            
+            // 更新履歴を再レンダリング
+            if (typeof renderFullUpdateHistory === 'function') {
+                renderFullUpdateHistory();
+            }
+        }
+        
+        // ダークモード切り替え関数
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            
+            const icon = document.querySelector('#darkModeToggle i');
+            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        // ダークモード初期化
+        function initializeDarkMode() {
+            const isDark = localStorage.getItem('darkMode') === 'true';
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                const icon = document.querySelector('#darkModeToggle i');
+                icon.className = 'fas fa-sun';
+            }
+        }
+    </script>
+</body>
+</html>
