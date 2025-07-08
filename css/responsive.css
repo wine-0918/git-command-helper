@@ -778,3 +778,55 @@
         font-size: 0.8rem;
     }
 }
+
+/* iPhone Safari背景修正 */
+@media (max-width: 480px) {
+    /* iPhone Safari固有の背景問題を修正 */
+    html {
+        background-color: #667eea !important; /* フォールバック色を強制 */
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        background-attachment: scroll !important;
+        background-repeat: no-repeat !important;
+        background-size: 100% 100% !important;
+        background-position: center center !important;
+        min-height: 100% !important;
+        height: 100% !important;
+    }
+    
+    body {
+        background-color: #667eea !important; /* フォールバック色を強制 */
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        background-attachment: scroll !important; /* iOSでfixedが効かない場合があるためscrollに変更 */
+        background-repeat: no-repeat !important;
+        background-size: 100% 100% !important; /* サイズを明示的に指定 */
+        background-position: center center !important;
+        /* Webkit専用プレフィックス */
+        -webkit-background-size: 100% 100% !important;
+        /* 最小高さを確保 */
+        min-height: 100vh !important;
+        min-height: -webkit-fill-available !important; /* iOSのviewport問題対応 */
+        /* より強い指定 */
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        /* 追加のiOS Safari対策 */
+        -webkit-background-clip: border-box !important;
+        background-clip: border-box !important;
+    }
+    
+    /* コンテナの背景透過を確実にする */
+    .container {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+    
+    /* セクションの背景を半透明に調整 */
+    .search-section,
+    .custom-command-section,
+    .recent-section,
+    .contact-section,
+    .contact-navigation,
+    .update-history-section {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+    }
+}

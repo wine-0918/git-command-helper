@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ダークモード初期化
     initializeDarkMode();
     
+    // iPhone Safari背景修正
+    if (typeof fixBackgroundForIOS === 'function') {
+        fixBackgroundForIOS();
+    }
+    
     // 戻るボタンのイベントリスナー
     const backButton = document.getElementById('backButton');
     if (backButton) {

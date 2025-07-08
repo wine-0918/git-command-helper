@@ -132,6 +132,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 最終更新日を設定
     updateLastModified();
+    
+    // iPhone Safari背景修正を適用
+    fixBackgroundForIOS();
 });
 
 // DOM要素を取得
@@ -400,3 +403,69 @@ window.addEventListener('error', function(e) {
         window.showNotification('エラーが発生しました', 'error');
     }
 });
+
+// iPhone Safari背景修正関数
+function fixBackgroundForIOS() {
+    // iOS/Safari かどうかを判定（より確実な方法）
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+    
+    if (isIOS || isSafari) {
+        const body = document.body;
+        const html = document.documentElement;
+        
+        // 背景グラデーション設定
+        const gradientStyle = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        const fallbackColor = '#667eea';
+        
+        // 複数回適用して確実にする
+        const applyBackground = () => {
+            // body要素の背景設定
+            body.style.setProperty('background', gradientStyle, 'important');
+            body.style.setProperty('background-color', fallbackColor, 'important');
+            body.style.setProperty('background-image', gradientStyle, 'important');
+            body.style.setProperty('background-attachment', 'scroll', 'important');
+            body.style.setProperty('background-repeat', 'no-repeat', 'important');
+            body.style.setProperty('background-size', '100% 100%', 'important');
+            body.style.setProperty('background-position', 'center center', 'important');
+            body.style.setProperty('min-height', '100vh', 'important');
+            body.style.setProperty('min-height', '-webkit-fill-available', 'important');
+            
+            // html要素の背景設定
+            html.style.setProperty('background', gradientStyle, 'important');
+            html.style.setProperty('background-color', fallbackColor, 'important');
+            html.style.setProperty('background-image', gradientStyle, 'important');
+            html.style.setProperty('background-attachment', 'scroll', 'important');
+            html.style.setProperty('background-repeat', 'no-repeat', 'important');
+            html.style.setProperty('background-size', '100% 100%', 'important');
+            html.style.setProperty('min-height', '100%', 'important');
+            
+            // コンテナの背景を透明にする
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.setProperty('background', 'transparent', 'important');
+                container.style.setProperty('background-color', 'transparent', 'important');
+            }
+        };
+        
+        // 即座に適用
+        applyBackground();
+        
+        // 少し遅れて再適用（念のため）
+        setTimeout(applyBackground, 100);
+        setTimeout(applyBackground, 500);
+        
+        // スクロールイベントで再適用（iOSのバグ対策）
+        window.addEventListener('scroll', applyBackground, { passive: true });
+        window.addEventListener('resize', applyBackground, { passive: true });
+        window.addEventListener('orientationchange', () => {
+            setTimeout(applyBackground, 100);
+        });
+        
+        console.log('iOS/Safari背景修正を適用しました');
+    }
+}
+
+// 背景修正をwindowオブジェクトに公開
+window.fixBackgroundForIOS = fixBackgroundForIOS;
