@@ -477,3 +477,304 @@
         font-size: 0.85rem;
     }
 }
+
+/* iPhone 追加最適化 */
+@media (max-width: 480px) {
+    /* スクロール性能の改善 */
+    body {
+        /* スムーズスクロール */
+        scroll-behavior: smooth;
+        /* バウンススクロールの無効化 */
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        /* タッチイベントの最適化 */
+        touch-action: pan-y pinch-zoom;
+    }
+    
+    /* 入力フィールドの改善 */
+    input, textarea, select {
+        /* iOSでのズーム防止 */
+        font-size: 16px !important;
+        /* タッチ操作の改善 */
+        touch-action: manipulation;
+        /* 背景色の固定（iOSの自動変更を防ぐ） */
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    
+    /* 横向き時の調整 */
+    @media (orientation: landscape) {
+        .container {
+            padding: 10px 15px;
+        }
+        
+        header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+        
+        header p {
+            font-size: 0.9rem;
+        }
+        
+        .search-section {
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .commands-grid {
+            gap: 12px;
+        }
+        
+        .command-card {
+            padding: 12px;
+        }
+        
+        .modal {
+            max-height: 85vh;
+        }
+    }
+    
+    /* 通知の位置調整 */
+    .notification {
+        top: max(15px, env(safe-area-inset-top));
+        left: 15px;
+        right: 15px;
+        transform: translateY(-120%);
+        border-radius: 8px;
+        padding: 12px 15px;
+        font-size: 0.9rem;
+        /* 影の調整 */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        /* Z-indexの調整 */
+        z-index: 10000;
+    }
+    
+    .notification.show {
+        transform: translateY(0);
+        animation: slideInTop 0.3s ease-out;
+    }
+    
+    @keyframes slideInTop {
+        from {
+            transform: translateY(-120%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    /* フッターの改善 */
+    footer {
+        margin: 15px 10px max(10px, env(safe-area-inset-bottom));
+        padding: 15px 12px max(15px, env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* ナビゲーションアクションの改善 */
+    .nav-actions {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .nav-actions .btn-secondary {
+        min-height: 44px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .nav-actions .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .nav-actions .btn-secondary:active {
+        transform: scale(0.98);
+        background: rgba(255, 255, 255, 0.4);
+    }
+    
+    /* ヘッダーコントロールの改善 */
+    .header-controls {
+        margin-top: 20px;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .control-btn {
+        min-height: 44px;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        /* タッチ操作の改善 */
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .control-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-1px);
+    }
+    
+    .control-btn:active {
+        transform: scale(0.98);
+        background: rgba(255, 255, 255, 0.4);
+    }
+    
+    .control-btn i {
+        font-size: 1rem;
+    }
+    
+    /* ローディング状態の改善 */
+    .btn-copy:disabled,
+    .btn-param:disabled,
+    .btn-primary:disabled,
+    .btn-secondary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+    }
+    
+    /* スピナーアニメーション */
+    .fa-spinner {
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    /* フォーカス状態の改善 */
+    input:focus,
+    textarea:focus,
+    button:focus,
+    select:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+    
+    /* アクセシビリティの改善 */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+    
+    /* 高コントラストモード対応 */
+    @media (prefers-contrast: high) {
+        .command-card {
+            border: 2px solid #333;
+        }
+        
+        .btn-copy,
+        .btn-param,
+        .btn-primary {
+            border: 2px solid currentColor;
+        }
+        
+        .filter-btn {
+            border: 2px solid currentColor;
+        }
+    }
+}
+
+/* iPhone Mini / 非常に小さい画面対応 */
+@media (max-width: 360px) {
+    .container {
+        padding: 8px;
+    }
+    
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    header p {
+        font-size: 0.9rem;
+    }
+    
+    .search-section,
+    .custom-command-section,
+    .recent-section,
+    .contact-section {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .command-card {
+        padding: 10px;
+    }
+    
+    .command-title {
+        font-size: 0.9rem;
+    }
+    
+    .command-description {
+        font-size: 0.75rem;
+    }
+    
+    .command-code {
+        font-size: 0.7rem;
+        padding: 6px 8px;
+    }
+    
+    .btn-copy,
+    .btn-param,
+    .btn-primary,
+    .btn-secondary {
+        min-height: 36px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .control-btn {
+        min-height: 36px;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .filter-btn {
+        min-height: 36px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .mobile-filter-toggle {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-filter-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}

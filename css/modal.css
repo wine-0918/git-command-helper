@@ -120,3 +120,305 @@
     justify-content: flex-end;
     gap: 10px;
 }
+
+/* iPhone / スマートフォン対応改善 */
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: 10px;
+        /* Safe Area対応 */
+        padding-top: max(10px, env(safe-area-inset-top));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+    }
+    
+    .modal {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        max-height: 90vh;
+        border-radius: 10px;
+        /* iPhone用スクロール改善 */
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+    }
+    
+    .modal-header {
+        padding: 15px;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 1;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.1rem;
+        margin: 0;
+        color: #333;
+    }
+    
+    .modal-close {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #f5f5f5;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: #666;
+        flex-shrink: 0;
+        /* タッチ操作改善 */
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-close:hover {
+        background: #e0e0e0;
+        color: #333;
+    }
+    
+    .modal-close:active {
+        transform: scale(0.95);
+    }
+    
+    .modal-close i {
+        font-size: 1rem;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .input-group {
+        margin-bottom: 15px;
+    }
+    
+    .input-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #333;
+    }
+    
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px; /* iOSズーム防止 */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        box-sizing: border-box;
+    }
+    
+    .input-group input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .generated-command {
+        margin-top: 15px;
+    }
+    
+    .generated-command label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #333;
+    }
+    
+    .command-preview {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 10px 12px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        color: #495057;
+        word-break: break-all;
+        white-space: pre-wrap;
+        line-height: 1.4;
+        /* 長いコードの処理 */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .modal-footer {
+        padding: 15px;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        background: white;
+        position: sticky;
+        bottom: 0;
+    }
+    
+    .modal-footer .btn-secondary,
+    .modal-footer .btn-primary {
+        min-height: 44px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        flex: 1;
+        max-width: 120px;
+        /* タッチ操作改善 */
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-footer .btn-secondary {
+        background: #f8f9fa;
+        color: #6c757d;
+        border: 1px solid #dee2e6;
+    }
+    
+    .modal-footer .btn-secondary:hover {
+        background: #e2e6ea;
+        border-color: #dae0e5;
+        color: #545b62;
+    }
+    
+    .modal-footer .btn-secondary:active {
+        transform: scale(0.98);
+    }
+    
+    .modal-footer .btn-primary:active {
+        transform: scale(0.98);
+    }
+}
+
+/* iPhone SE / 小画面対応 */
+@media (max-width: 375px) {
+    .modal-overlay {
+        padding: 5px;
+    }
+    
+    .modal {
+        border-radius: 8px;
+        max-height: 95vh;
+    }
+    
+    .modal-header {
+        padding: 12px;
+    }
+    
+    .modal-header h3 {
+        font-size: 1rem;
+    }
+    
+    .modal-close {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .modal-close i {
+        font-size: 0.9rem;
+    }
+    
+    .modal-body {
+        padding: 12px;
+    }
+    
+    .input-group {
+        margin-bottom: 12px;
+    }
+    
+    .input-group label {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+    
+    .input-group input {
+        padding: 10px;
+        font-size: 16px;
+    }
+    
+    .command-preview {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .modal-footer {
+        padding: 12px;
+        gap: 8px;
+    }
+    
+    .modal-footer .btn-secondary,
+    .modal-footer .btn-primary {
+        min-height: 40px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        max-width: 100px;
+    }
+}
+
+/* ダークモード対応 */
+body.dark-mode .modal {
+    background: #2d2d2d;
+    color: #ffffff;
+}
+
+body.dark-mode .modal-header {
+    border-bottom-color: #444;
+    background: #2d2d2d;
+}
+
+body.dark-mode .modal-header h3 {
+    color: #ffffff;
+}
+
+body.dark-mode .modal-close {
+    background: #404040;
+    color: #cccccc;
+}
+
+body.dark-mode .modal-close:hover {
+    background: #555;
+    color: #ffffff;
+}
+
+body.dark-mode .modal-footer {
+    border-top-color: #444;
+    background: #2d2d2d;
+}
+
+body.dark-mode .input-group label,
+body.dark-mode .generated-command label {
+    color: #ffffff;
+}
+
+body.dark-mode .input-group input {
+    background: #404040;
+    border-color: #555;
+    color: #ffffff;
+}
+
+body.dark-mode .input-group input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+body.dark-mode .command-preview {
+    background: #404040;
+    border-color: #555;
+    color: #cccccc;
+}
+
+body.dark-mode .modal-footer .btn-secondary {
+    background: #404040;
+    color: #cccccc;
+    border-color: #555;
+}
+
+body.dark-mode .modal-footer .btn-secondary:hover {
+    background: #555;
+    border-color: #666;
+    color: #ffffff;
+}

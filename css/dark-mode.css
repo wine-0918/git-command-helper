@@ -315,3 +315,322 @@ body.dark-mode .mobile-filter-btn.active {
         border: 1px solid rgba(255, 255, 255, 0.1);
     }
 }
+
+/* iPhone ダークモード対応改善 */
+@media (max-width: 480px) {
+    /* ダークモード時のSafe Area対応 */
+    body.dark-mode {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+    
+    /* ヘッダーコントロール（ダークモード） */
+    body.dark-mode .control-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    body.dark-mode .control-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    body.dark-mode .control-btn:active {
+        background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* ナビゲーションアクション（ダークモード） */
+    body.dark-mode .nav-actions .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    body.dark-mode .nav-actions .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    body.dark-mode .nav-actions .btn-secondary:active {
+        background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* 入力フィールド（ダークモード） */
+    body.dark-mode input,
+    body.dark-mode textarea {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #ffffff;
+        /* プレースホルダーの色 */
+        -webkit-text-fill-color: #ffffff;
+    }
+    
+    body.dark-mode input::placeholder,
+    body.dark-mode textarea::placeholder {
+        color: #888;
+        opacity: 1;
+    }
+    
+    body.dark-mode input:focus,
+    body.dark-mode textarea:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        outline-color: #4a90e2;
+    }
+    
+    /* ボタン（ダークモード） */
+    body.dark-mode .btn-copy {
+        background: #4a90e2;
+        border-color: #4a90e2;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .btn-copy:hover {
+        background: #357abd;
+        border-color: #357abd;
+    }
+    
+    body.dark-mode .btn-copy:active {
+        background: #2c5aa0;
+    }
+    
+    body.dark-mode .btn-param {
+        background: #6c757d;
+        border-color: #6c757d;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .btn-param:hover {
+        background: #5a6268;
+        border-color: #545b62;
+    }
+    
+    body.dark-mode .btn-param:active {
+        background: #495057;
+    }
+    
+    body.dark-mode .btn-primary {
+        background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+        border-color: #4a90e2;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .btn-primary:hover {
+        background: linear-gradient(135deg, #357abd 0%, #2c5aa0 100%);
+        border-color: #357abd;
+    }
+    
+    body.dark-mode .btn-primary:active {
+        background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 100%);
+    }
+    
+    /* フィルターボタン（ダークモード） */
+    body.dark-mode .filter-btn {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #cccccc;
+    }
+    
+    body.dark-mode .filter-btn:hover {
+        background: #3a3a3a;
+        border-color: #555;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .filter-btn.active {
+        background: #4a90e2;
+        border-color: #4a90e2;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .filter-btn:active {
+        background: #4a4a4a;
+    }
+    
+    /* モバイルフィルター（ダークモード） */
+    body.dark-mode .mobile-filter-toggle {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .mobile-filter-toggle:hover,
+    body.dark-mode .mobile-filter-toggle.active {
+        background: #3a3a3a;
+        border-color: #4a90e2;
+    }
+    
+    body.dark-mode .mobile-filter-menu {
+        background: #2a2a2a;
+        border-color: #444;
+    }
+    
+    body.dark-mode .mobile-filter-btn {
+        background: transparent;
+        color: #cccccc;
+        border-bottom-color: #444;
+    }
+    
+    body.dark-mode .mobile-filter-btn:hover {
+        background: #3a3a3a;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .mobile-filter-btn.active {
+        background: #4a90e2;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .mobile-filter-btn:active {
+        background: #4a4a4a;
+    }
+    
+    /* 通知（ダークモード） */
+    body.dark-mode .notification {
+        background: #2a2a2a !important;
+        color: #ffffff;
+        border: 1px solid #444;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    body.dark-mode .notification.error {
+        background: #dc3545 !important;
+        color: #ffffff;
+        border-color: #dc3545;
+    }
+    
+    body.dark-mode .notification.success {
+        background: #28a745 !important;
+        color: #ffffff;
+        border-color: #28a745;
+    }
+    
+    /* フッター（ダークモード） */
+    body.dark-mode footer {
+        background: rgba(30, 30, 30, 0.95);
+        color: #cccccc;
+        border: 1px solid #444;
+    }
+    
+    body.dark-mode footer a {
+        color: #4a90e2;
+    }
+    
+    body.dark-mode footer a:hover {
+        color: #357abd;
+    }
+    
+    /* コードブロック（ダークモード） */
+    body.dark-mode .command-code,
+    body.dark-mode .custom-command-code,
+    body.dark-mode .recent-command-code {
+        background: #1a1a1a;
+        border-color: #333;
+        color: #e6e6e6;
+    }
+    
+    /* カテゴリータグ（ダークモード） */
+    body.dark-mode .command-category {
+        background: #4a90e2;
+        color: #ffffff;
+    }
+    
+    /* セクション見出し（ダークモード） */
+    body.dark-mode .search-section h2,
+    body.dark-mode .custom-command-section h2,
+    body.dark-mode .recent-section h2,
+    body.dark-mode .contact-section h2,
+    body.dark-mode .contact-cta h2,
+    body.dark-mode .update-history-section h2 {
+        color: #ffffff;
+    }
+    
+    /* 説明テキスト（ダークモード） */
+    body.dark-mode .contact-section p,
+    body.dark-mode .contact-cta p,
+    body.dark-mode .update-content li,
+    body.dark-mode .command-description {
+        color: #cccccc;
+    }
+    
+    /* リンク（ダークモード） */
+    body.dark-mode .contact-btn {
+        background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+        color: #ffffff;
+        border-color: #4a90e2;
+    }
+    
+    body.dark-mode .contact-btn:hover {
+        background: linear-gradient(135deg, #357abd 0%, #2c5aa0 100%);
+        border-color: #357abd;
+        text-decoration: none;
+        color: #ffffff;
+    }
+    
+    body.dark-mode .contact-btn:active {
+        background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 100%);
+    }
+    
+    /* スクロールバー（ダークモード、Webkit系ブラウザ） */
+    body.dark-mode ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    body.dark-mode ::-webkit-scrollbar-track {
+        background: #2a2a2a;
+    }
+    
+    body.dark-mode ::-webkit-scrollbar-thumb {
+        background: #555;
+        border-radius: 4px;
+    }
+    
+    body.dark-mode ::-webkit-scrollbar-thumb:hover {
+        background: #666;
+    }
+}
+
+/* iPhone SE / 小画面でのダークモード調整 */
+@media (max-width: 375px) {
+    body.dark-mode .control-btn {
+        min-height: 36px;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    
+    body.dark-mode .nav-actions .btn-secondary {
+        min-height: 36px;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    
+    body.dark-mode .btn-copy,
+    body.dark-mode .btn-param,
+    body.dark-mode .btn-primary {
+        min-height: 36px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    body.dark-mode .filter-btn {
+        min-height: 36px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    body.dark-mode .mobile-filter-toggle {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    body.dark-mode .mobile-filter-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}

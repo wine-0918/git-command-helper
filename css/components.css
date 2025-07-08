@@ -236,3 +236,216 @@
 .notification.show {
     transform: translateX(0);
 }
+
+/* iPhone / スマートフォン対応改善 */
+@media (max-width: 480px) {
+    /* 検索セクション */
+    .search-section {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+    
+    .search-box input {
+        padding: 14px 45px;
+        font-size: 16px; /* iOSズーム防止 */
+        border-radius: 10px;
+    }
+    
+    .search-box i {
+        font-size: 1rem;
+        left: 12px;
+    }
+    
+    /* フィルターボタン */
+    .filter-btn {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        border-radius: 15px;
+        min-height: 44px; /* タッチ操作に適したサイズ */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* コマンドグリッド */
+    .commands-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .command-card {
+        padding: 16px;
+        border-radius: 10px;
+        border-left-width: 3px;
+    }
+    
+    .command-title {
+        font-size: 1rem;
+        line-height: 1.4;
+        /* 長いタイトルの省略表示 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    
+    .command-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+    
+    .command-code {
+        font-size: 0.8rem;
+        padding: 10px 12px;
+        border-radius: 6px;
+        /* 長いコードの水平スクロール */
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* ボタン */
+    .btn-copy,
+    .btn-param {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        border-radius: 8px;
+        /* タッチ操作の改善 */
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-primary {
+        min-height: 44px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+    
+    .btn-secondary {
+        min-height: 44px;
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+    
+    /* カテゴリータグ */
+    .command-category {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 10px;
+    }
+    
+    /* コマンドアクション */
+    .command-actions {
+        gap: 8px;
+        margin-top: 12px;
+    }
+    
+    /* 横スクロール改善 */
+    .filter-buttons {
+        gap: 8px;
+        padding-bottom: 5px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* スクロールバーを隠す */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .filter-buttons::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* フレックスボックスの調整 */
+    .filter-buttons {
+        flex-wrap: nowrap;
+        min-width: min-content;
+    }
+    
+    .filter-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+}
+
+/* iPhone SE / 小画面対応 */
+@media (max-width: 375px) {
+    .search-box input {
+        padding: 12px 40px;
+        font-size: 16px;
+    }
+    
+    .search-box i {
+        left: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .command-card {
+        padding: 14px;
+    }
+    
+    .command-title {
+        font-size: 0.95rem;
+    }
+    
+    .command-description {
+        font-size: 0.8rem;
+    }
+    
+    .command-code {
+        font-size: 0.75rem;
+        padding: 8px 10px;
+    }
+    
+    .btn-copy,
+    .btn-param,
+    .btn-primary,
+    .btn-secondary {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        min-height: 40px;
+    }
+    
+    .filter-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        min-height: 40px;
+    }
+}
+
+/* タッチ操作の改善 */
+@media (hover: none) and (pointer: coarse) {
+    /* ホバー効果をタッチ用に調整 */
+    .command-card:hover {
+        transform: none;
+    }
+    
+    .command-card:active {
+        transform: translateY(-2px);
+        transition: transform 0.1s ease;
+    }
+    
+    .filter-btn:hover {
+        background: white;
+    }
+    
+    .filter-btn:active {
+        background: #f0f0f0;
+        transform: scale(0.98);
+        transition: all 0.1s ease;
+    }
+    
+    .btn-copy:active,
+    .btn-param:active,
+    .btn-primary:active,
+    .btn-secondary:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
