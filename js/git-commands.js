@@ -26,6 +26,13 @@ const gitCommands = [
         category: "basic",
         hasParams: false
     },
+    // プルリクエスト作成（GitHub CLI例）
+    {
+        command: "gh pr create --base {base_branch} --head {feature_branch} --title \"{title}\" --body \"{body}\"",
+        category: "pullrequest",
+        hasParams: true,
+        paramLabel: "ベースブランチ, フィーチャーブランチ, タイトル, 本文"
+    },
     {
         command: "git add {file_name}",
         category: "basic",
@@ -398,6 +405,8 @@ function getCommandInfo(command) {
         "git push origin {branch_name}": "特定ブランチをプッシュ",
         "git fetch": "リモート情報を取得",
         "git merge {branch_name}": "ブランチをマージ",
+        // プルリクエスト
+        "gh pr create --base {base_branch} --head {feature_branch} --title \"{title}\" --body \"{body}\"": "プルリクエストを作成 (GitHub CLI)",
         "git rebase {branch_name}": "ブランチをリベース",
         "git checkout {branch_name}": "ブランチを切り替え",
         "git checkout {commit_hash}": "特定コミットにチェックアウト",
@@ -477,6 +486,8 @@ function getCommandInfo(command) {
         "git checkout {commit_hash}": "特定のコミットにチェックアウトします",
         "git tag {tag_name}": "現在のコミットにタグを作成します",
         "git tag -a {tag_name} -m \"{message}\"": "注釈付きタグを作成します",
+        // プルリクエスト
+        "gh pr create --base {base_branch} --head {feature_branch} --title \"{title}\" --body \"{body}\"": "GitHub CLIを使ってプルリクエストを作成します。base_branchはマージ先、feature_branchはマージ元、titleはPRタイトル、bodyは説明文です。",
         
         // ブランチコマンド
         "git checkout -b {branch_name}": "新しいブランチを作成して、そのブランチに切り替えます",
