@@ -54,6 +54,28 @@ body {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
 }
+nav.page-nav {
+    margin: 1rem 0 0.5rem 0;
+}
+.nav-btn {
+    display: inline-block;
+    background: #fff;
+    color: #667eea;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 0.4rem 1.2rem;
+    margin: 0 0.3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.08);
+    transition: background 0.2s, color 0.2s;
+}
+.nav-btn:hover {
+    background: #667eea;
+    color: #fff;
+    border-color: #fff;
+}
 
 /* iPhone/Safari特別対応 */
 @supports (-webkit-appearance: none) {

@@ -1,6 +1,18 @@
 // 更新履歴管理
 
 // 更新履歴データ（開発者が編集する用）
+
+window.updateHistory = window.updateHistory || [];
+window.updateHistory.unshift({
+    date: '2025-07-25',
+    title: 'Webページ間ナビゲーション追加・説明ページ強化',
+    details: [
+        'index.htmlとexplain.htmlにWebページ間のナビゲーションボタンを追加し、どのページからも移動しやすくしました。',
+        'コマンド説明ページの説明文を初心者向けに大幅拡充。',
+        'ナビゲーションボタンのデザインを統一し、base.cssにスタイル追加。',
+        'ユーザー導線・UI/UXを改善。'
+    ]
+});
 const updateHistory = [
     {
         date: '2025年7月8日',
