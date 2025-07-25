@@ -1,4 +1,15 @@
-// EmailJS初期化とお問い合わせフォーム機能
+
+// お問い合わせフォーム送信時の完了メッセージ表示のみ
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const result = document.getElementById('contact-result');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        result.textContent = 'お問い合わせ内容を送信しました。ありがとうございました！';
+        form.reset();
+    });
+});
 console.log('contact.js読み込み開始');
 
 // EmailJS初期化

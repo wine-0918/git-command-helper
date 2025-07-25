@@ -2,8 +2,8 @@
 // ページ遷移ボタンのリンク一覧
 const pageLinks = [
     { name: 'ホーム', url: '../index.html' },
-    { name: '更新履歴', url: '../update-history.html' },
-    { name: 'お問い合わせ', url: '../contact.html' }
+    // { name: '更新履歴', url: '../update-history.html' },
+    // { name: 'お問い合わせ', url: '../contact.html' }
 ];
 
 function renderNavigation() {
@@ -11,9 +11,13 @@ function renderNavigation() {
     if (!header) return;
     const nav = document.createElement('nav');
     nav.className = 'page-nav';
-    nav.innerHTML = pageLinks.map(link =>
-        `<a href="${link.url}" class="nav-btn">${link.name}</a>`
-    ).join(' ');
+    nav.innerHTML = pageLinks.map(link => {
+        // explain.htmlから見た相対パスに統一
+        if (link.name === 'ホーム') return `<a href="../index.html" class="nav-btn">${link.name}</a>`;
+        // if (link.name === '更新履歴') return `<a href="../update-history.html" class="nav-btn">${link.name}</a>`;
+        // if (link.name === 'お問い合わせ') return `<a href="../contact.html" class="nav-btn">${link.name}</a>`;
+        return `<a href="${link.url}" class="nav-btn">${link.name}</a>`;
+    }).join(' ');
     header.appendChild(nav);
 }
 
