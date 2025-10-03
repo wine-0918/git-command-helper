@@ -1,3 +1,31 @@
+// --- 追加: git log --oneline --graph --all コピー機能 ---
+document.addEventListener('DOMContentLoaded', function() {
+    var copyBtn = document.getElementById('copyLogGraphBtn');
+    var copyMsg = document.getElementById('copyLogGraphMsg');
+    if (copyBtn && copyMsg) {
+        copyBtn.addEventListener('click', function() {
+            var command = 'git log --oneline --graph --all';
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(command).then(function() {
+                    copyMsg.style.display = 'inline';
+                    setTimeout(function(){ copyMsg.style.display = 'none'; }, 1800);
+                });
+            } else {
+                // Fallback
+                var textarea = document.createElement('textarea');
+                textarea.value = command;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    copyMsg.style.display = 'inline';
+                    setTimeout(function(){ copyMsg.style.display = 'none'; }, 1800);
+                } catch(e) {}
+                document.body.removeChild(textarea);
+            }
+        });
+    }
+});
 // Git Command Helper メイン機能
 
 // グローバル変数

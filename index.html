@@ -108,6 +108,15 @@
                 Git開発を効率化する無料ツール。ブランチ操作、コミット、リモート管理など100以上のコマンドをワンクリックでコピー。
             </div>
         </header>
+            <!-- 追加: git log --oneline --graph --all コマンド表示＆コピー -->
+            <section style="max-width:600px;margin:2rem auto 1rem auto;padding:1rem;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(102,126,234,0.08);">
+                <h2 style="color:#667eea;font-size:1.2rem;margin-bottom:0.7rem;">履歴をグラフ表示 (全ブランチ)</h2>
+                <div style="font-family:'Fira Mono','Consolas',monospace;background:#f3f4fa;color:#e06c75;padding:0.5rem 0.7rem;border-radius:6px;margin-bottom:0.7rem;font-size:1rem;word-break:break-all;">
+                    git log --oneline --graph --all
+                </div>
+                <button id="copyLogGraphBtn" style="background:#28a745;color:#fff;border:none;border-radius:20px;padding:0.4rem 1.2rem;font-size:1rem;font-weight:bold;cursor:pointer;">コピー</button>
+                <span id="copyLogGraphMsg" style="margin-left:1rem;color:#28a745;font-size:0.95rem;display:none;">コピーしました！</span>
+            </section>
                 <!-- Webページ間ナビゲーション -->
                 <nav class="page-nav" style="text-align:center; margin: 1.5rem 0 1rem 0;">
                     <a href="index.html" class="nav-btn">ホーム</a>
