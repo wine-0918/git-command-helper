@@ -15,6 +15,85 @@ const gitCommands = [
         category: "basic",
         hasParams: false
     },
+    // GitHub CLI (gh) コマンド
+    {
+        command: "gh repo clone {owner}/{repo}",
+        category: "gh",
+        hasParams: true,
+        paramLabel: "リポジトリ名"
+    },
+    {
+        command: "gh repo create",
+        category: "gh",
+        hasParams: false
+    },
+    {
+        command: "gh issue list",
+        category: "gh",
+        hasParams: false
+    },
+    {
+        command: "gh issue create",
+        category: "gh",
+        hasParams: true,
+        paramLabel: "タイトル・本文"
+    },
+    {
+        command: "gh pr list",
+        category: "gh",
+        hasParams: false
+    },
+    {
+        command: "gh pr create",
+        category: "gh",
+        hasParams: true,
+        paramLabel: "マージ元・マージ先・タイトル・本文"
+    },
+    {
+        command: "gh pr checkout {number}",
+        category: "gh",
+        hasParams: true,
+        paramLabel: "PR番号"
+    },
+    {
+        command: "gh pr merge {number}",
+        category: "gh",
+        hasParams: true,
+        paramLabel: "PR番号"
+    },
+    {
+        command: "gh gist create {file}",
+        category: "gh",
+        hasParams: true,
+        paramLabel: "ファイル名"
+    },
+    {
+        command: "gh auth login",
+        category: "gh",
+        hasParams: false
+    },
+    {
+        command: "gh release list",
+        category: "gh",
+        hasParams: false
+    },
+    {
+        command: "gh release create {tag}",
+        category: "gh",
+        hasParams: true,
+        paramLabel: "タグ名"
+    },
+    {
+        command: "gh workflow list",
+        category: "gh",
+        hasParams: false
+    },
+    {
+        command: "gh workflow run {workflow}",
+        category: "gh",
+        hasParams: true,
+        paramLabel: "ワークフロー名"
+    },
     {
         command: "git clone {repository_url}",
         category: "basic",

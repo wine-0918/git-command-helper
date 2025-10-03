@@ -24,6 +24,96 @@ function renderNavigation() {
 // コマンドデータ（説明文をより詳しく・初心者向けに拡充）
 const gitCommands = [
     {
+        command: "gh repo clone {owner}/{repo}",
+        category: "gh",
+        title: "GitHubリポジトリをクローン",
+        description: "GitHub CLIで指定したリポジトリをローカルに複製します。\n\n例: gh repo clone wine-0918/git-command-helper"
+    },
+    {
+        command: "gh repo create",
+        category: "gh",
+        title: "新規リポジトリ作成",
+        description: "GitHub CLIで新しいリポジトリを作成します。\n\n対話形式でリポジトリ名や公開/非公開を選択できます。"
+    },
+    {
+        command: "gh issue list",
+        category: "gh",
+        title: "Issue一覧表示",
+        description: "GitHub CLIで現在のリポジトリのIssue一覧を表示します。\n\n例: gh issue list --state open"
+    },
+    {
+        command: "gh issue create",
+        category: "gh",
+        title: "Issue作成",
+        description: "GitHub CLIで新しいIssueを作成します。\n\nタイトルや本文、ラベルなどを対話形式で入力できます。"
+    },
+    {
+        command: "gh pr list",
+        category: "gh",
+        title: "プルリクエスト一覧表示",
+        description: "GitHub CLIで現在のリポジトリのプルリクエスト一覧を表示します。\n\n例: gh pr list --state open"
+    },
+    {
+        command: "gh pr create",
+        category: "gh",
+        title: "プルリクエスト作成",
+        description: "GitHub CLIで新しいプルリクエストを作成します。\n\nマージ元・マージ先・タイトル・本文などを対話形式で入力できます。"
+    },
+    {
+        command: "gh pr checkout {number}",
+        category: "gh",
+        title: "プルリクエストのブランチに切り替え",
+        description: "指定したプルリクエスト番号のブランチに切り替えます。\n\n例: gh pr checkout 12"
+    },
+    {
+        command: "gh pr merge {number}",
+        category: "gh",
+        title: "プルリクエストをマージ",
+        description: "指定したプルリクエスト番号をマージします。\n\n例: gh pr merge 12 --merge"
+    },
+    {
+        command: "gh pr view {number}",
+        category: "gh",
+        title: "プルリクエスト詳細表示",
+        description: "指定したプルリクエスト番号の詳細を表示します。\n\n例: gh pr view 12 --web"
+    },
+    {
+        command: "gh gist create {file}",
+        category: "gh",
+        title: "Gist作成",
+        description: "指定したファイルをGistとしてGitHubに公開します。\n\n例: gh gist create README.md"
+    },
+    {
+        command: "gh auth login",
+        category: "gh",
+        title: "GitHub認証（ログイン）",
+        description: "GitHub CLIでGitHubアカウントに認証・ログインします。\n\n初回利用時やトークン再発行時に使用します。"
+    },
+    {
+        command: "gh release list",
+        category: "gh",
+        title: "リリース一覧表示",
+        description: "GitHub CLIでリポジトリのリリース一覧を表示します。\n\n例: gh release list"
+    },
+    {
+        command: "gh release create {tag}",
+        category: "gh",
+        title: "新規リリース作成",
+        description: "指定したタグ名で新しいリリースを作成します。\n\n例: gh release create v1.0.0"
+    },
+    {
+        command: "gh workflow list",
+        category: "gh",
+        title: "GitHub Actionsワークフロー一覧",
+        description: "GitHub CLIでActionsワークフローの一覧を表示します。\n\n例: gh workflow list"
+    },
+    {
+        command: "gh workflow run {workflow}",
+        category: "gh",
+        title: "ワークフロー手動実行",
+        description: "指定したワークフローを手動で実行します。\n\n例: gh workflow run build.yml"
+    },
+    {
         command: "git init",
         category: "basic",
         title: "リポジトリを初期化",

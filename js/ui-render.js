@@ -24,11 +24,7 @@ function renderCommands() {
     });
     
     if (filteredCommands.length === 0) {
-        const langData = getCurrentLanguageData();
-        const noResultsText = langData ? 
-            (langData.no_results || '該当するコマンドが見つかりませんでした') : 
-            '該当するコマンドが見つかりませんでした';
-        commandsGrid.innerHTML = `<div class="no-results">${noResultsText}</div>`;
+        commandsGrid.innerHTML = '<div class="no-results" style="text-align:center;color:#e06c75;font-size:1.3rem;padding:2rem;font-weight:bold;">該当するコマンドがありません</div>';
     }
 }
 
@@ -46,11 +42,12 @@ function createCommandCard(cmd) {
         'reset': '#dc3545',
         'remote': '#fd7e14',
         'log': '#6610f2',
-        'stash': '#6f42c1'
+        'stash': '#6f42c1',
+        'gh': '#24292f' // GitHubカテゴリ用（黒系）
     };
     
     // カテゴリ名の翻訳
-    const categoryName = langData ? langData[cmd.category] || getCategoryName(cmd.category) : getCategoryName(cmd.category);
+    const categoryName = langData ? langData[cmd.category] || (cmd.category === 'gh' ? 'GitHub' : getCategoryName(cmd.category)) : (cmd.category === 'gh' ? 'GitHub' : getCategoryName(cmd.category));
     
     card.innerHTML = `
         <div class="command-header">
